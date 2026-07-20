@@ -1,0 +1,131 @@
+# Ref https://cccbdb.nist.gov/vibs3x.asp?method=8&basis=26
+# unit for vib freq: [cm^-1]
+# symmetry factor: https://cccbdb.nist.gov/thermox.asp
+# line 1 [Species Name]
+# line 2 [Sigma]
+# line 3 [Vibrational Frequencies], ~3N-3
+# line 4 [electronic degree of freedom] [Excitation energy]
+# line 5 [Rotational constants]
+# line 6 [Energy at 0K]
+# B3LYP/aug-cc-pVDZ
+HNO+
+1
+2771    2060    1078
+2 0 
+24.58578    1.52722    1.43790
+-130.119981
+# B3LYP/aug-cc-pVDZ
+NO2+
+2
+1445    2439    630
+1 0
+0.41654
+-204.748062
+# B3LYP/aug-cc-pVDZ
+HeH+
+1
+3001
+1 0
+32.78058
+-2.979903
+# B3LYP/aug-cc-pVDZ
+H3+
+6
+3396    2585
+1 0
+40.73944	40.73944	20.36972
+-1.339653
+# B3LYP/aug-cc-pVDZ
+NH2+
+2
+3183    708    3454
+1 0
+3 10222
+175.02449   8.10976 7.75064
+-55.473726
+# B3LYP/aug-cc-pVDZ 
+CH2+
+2
+2961    914     3227
+2 0
+74.06120	7.63584	6.92216
+-38.774944
+# B3LYP/aug-cc-pVDZ 
+ClO
+1
+857
+2 0
+2 318
+0.61348
+-535.381983
+# B3LYP/aug-cc-pVDZ 
+ArH+
+1
+2583
+1 0
+10.03542
+-527.689816
+# B3LYP/aug-cc-pVDZ 
+HO2+
+1
+3129    1472    1081
+3 0
+21.73115	1.27693	1.20606
+-150.516193
+# B3LYP/aug-cc-pVDZ 
+N2H+
+1
+3353    2377    628
+1 0
+1.54348
+-109.734727
+# B3LYP/aug-cc-pVDZ 
+OCOH+
+1
+3499    2450    1255    1042    541     591
+1 0
+25.54514	0.35672	0.35181
+-188.824833
+# B3LYP/aug-cc-pVDZ, rotational constant C is empty
+CH3S
+3
+2960 1313 727 2706 1496 586
+2 0
+5.68000	0.44958	0 
+-438.084948
+# experimental except last row
+CH3SH
+1
+3000 2931 2597 1475 1335 1074 803 708 3000 1430 976
+1 0
+3.42541	0.43188	0.41316
+-438.725729
+# B3LYP/aug-cc-pVDZ except vib freq
+ClCO
+1
+1885 570 335
+2 0
+5.13464	0.18967	0.18291
+-573.508396
+# B3LYP/aug-cc-pVDZ
+H2CN
+2
+2820 1725 1337 954 3103 913
+2 0
+9.38120	1.29909	1.14108
+-93.998288
+# B3LYP/aug-cc-pVDZ
+HC3N
+1
+3327 2274 2079 864 663 499 222
+1 0
+0.15082
+-168.593545
+# B3LYP/aug-cc-pVQZ
+HS
+1
+2599
+2 0
+2 376.96
+9.50572
+-398.784886

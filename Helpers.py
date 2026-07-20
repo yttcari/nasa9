@@ -3,6 +3,8 @@ import numpy as np
 import polars as pl
 import regex as re
 import csv
+import nasa9
+
 def extract_species(ext):
     """
     Reads the species_densities file from kompot paths finalstate. Returns
@@ -293,33 +295,47 @@ def read_enthalpies():
 
     return result
 
-def calc_energies(df):
+def calc_energies(df, T=298.15):
 
     enthalpies = read_enthalpies()
     species_existing = enthalpies.keys()
-    energies = []
+
     for i, row in df.iterrows():
         reaction_right, reaction_left = re.split(r'=>|<=>', row["reaction"])
         reactants_r = re.split(r'(?<= )\+(?= )', reaction_right)
         reactants_l = re.split(r'(?<= )\+(?= )', reaction_left)
         reactants_r = [r.strip() for r in reactants_r]
         reactants_l = [r.strip() for r in reactants_l]
-        energies_r = []
         energies_l = []
+        energies_r = []
+
         for r in reactants_l:
-            if r in species_existing:
-                energies_r.append(enthalpies[r])
-            else:
-                energies_r.append('X')
+            try:
+                H = nasa9.get_H(r, T) / 1000.0  # J/mol to kJ/mol
+                energies_l.append(H)
+            except Exception: # fallback
+                print(f"{r} is not found in the NASA9 database. Fallback to default energy.")
+                if r in species_existing and enthalpies[r] is not None:
+                    energies_l.append(enthalpies[r])
+                else:
+                    energies_l.append('X')
+
         for r in reactants_r:
-            if r in species_existing:
-                energies_l.append(enthalpies[r])
-            else:
-                energies_l.append('X')
-        if not(('X' in energies_l) | ('X' in energies_r)):
-            df.at[i,"energy"] = (sum(energies_l) - sum(energies_r))/c.KJMOL_TO_EV
+            try:
+                H = nasa9.get_H(r, T) / 1000.0  # J/mol -> kJ/mol
+                energies_r.append(H)
+            except Exception:
+                print(f"{r} is not found in the NASA9 database. Fallback to default energy.")
+                if r in species_existing and enthalpies[r] is not None:
+                    energies_r.append(enthalpies[r])
+                else:
+                    energies_r.append('X')
+
+        if not (('X' in energies_l) or ('X' in energies_r)):
+            df.at[i, "energy"] = (sum(energies_l) - sum(energies_r)) / c.KJMOL_TO_EV
         else:
-            df.at[i,"energy"] = 0
+            df.at[i, "energy"] = 0
+
     return df
 
 def search_and_replace(file_path, search_word, replace_word):  

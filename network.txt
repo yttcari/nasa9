@@ -1,0 +1,3603 @@
+@var: total_density = sum(n(:))
+@var: TgasNI = 0.5 * ( Tneut + Tion )
+@var: TgasNE = 0.5 * ( Tneut + Telec )
+@var: TgasIE = 0.5 * ( Tion + Telec )
+
+# T in the rate coefficient equation depends on the type of reactant
+# e.g., if a neutral and an ion is on the LHS of the equation use TgasNI
+
+#------------------------------------------------------------------------------------------
+# changed rates from Tian values to Fox & Sung values
+# indx,r,r,r,p,p,p,p,minT,maxT,k
+# energy of reaction
+# indx,r,r,r,p,p,p,p,minT,maxT,k
+# energy of reaction
+
+1,N,O2,,NO,O,,,NONE,NONE,1.5e-14 * Tneut * exp(-3270.0/Tneut)
+# 1 energy = 1.40 eV
+
+#------------------------------------------------------------------------------------------
+# replaced Tian rate with KIDA rate
+#2,N,NO,,N2,O,,,NONE,NONE,1.6e-10 * exp(-460.0/Tneut)
+2,N,NO,,N2,O,,,NONE,NONE,4.0e-11 * (Tneut/300.0)**(-0.2) * exp(-20.0/Tneut)
+# 2 energy = 3.26 eV
+
+#------------------------------------------------------------------------------------------
+
+3,N_2d,O,,N,O,,,NONE,NONE,6.90e-13
+# 3 energy = 2.38 eV
+
+#------------------------------------------------------------------------------------------
+
+4,N_2d,O2,,NO,O_1d,,,NONE,NONE,9.7e-12 * exp(-185.0/Tneut)
+# 4 energy = 1.84 eV
+
+#------------------------------------------------------------------------------------------
+
+5,N_2d,O2,,NO,O,,,NONE,NONE,6.2e-12 * (Tneut/300.0) * 0.9
+# 5 energy = 3.76 eV
+
+#------------------------------------------------------------------------------------------
+
+6,N_2d,NO,,N2,O,,,NONE,NONE,7e-11
+# 6 energy = 5.63 eV
+
+#------------------------------------------------------------------------------------------
+# this one emits a photon, maybe need to add cooling somehow
+
+7,N_2d,,,N,,,,NONE,NONE,1.06e-5
+# 7 energy = 0.0 eV
+
+#------------------------------------------------------------------------------------------
+
+8,O_1d,N2,,O,N2,,,NONE,NONE,1.8e-11 * exp(107.0/Tneut)
+# 8 energy = 1.96 eV
+
+#------------------------------------------------------------------------------------------
+# this one emits a photon, maybe need to add cooling somehow
+
+9,O_1d,,,O,,,,NONE,NONE,8.33e-3
+# 9 energy = 0.0 eV
+
+#------------------------------------------------------------------------------------------
+
+10,O_1d,H2O,,OH,OH,,,NONE,NONE,2.2e-10
+# 10 energy = 1.23 eV
+
+#------------------------------------------------------------------------------------------
+# this one has a catalyst
+
+11,O,O,,O2,,,,NONE,NONE,9.59e-34 * exp(480.0 / Tneut) * total_density
+# 11 energy = 5.10 eV
+
+#------------------------------------------------------------------------------------------
+# this one has a catalyst
+
+12,O,O2,,O3,,,,NONE,NONE,6.0e-34 * (300.0 / Tneut)**2.3 * total_density
+# 12 energy = 1.10 eV
+
+#------------------------------------------------------------------------------------------
+
+13,O,O3,,O2,O2,,,NONE,NONE,8.0e-12 * exp(-2060.0 / Tneut)
+# 13 energy = 4.06 eV
+
+#------------------------------------------------------------------------------------------
+# this one has a catalyst
+
+14,CO,O,,CO2,,,,NONE,NONE,6.6e-33 * exp(-1103 / Tneut) * total_density
+# 14 energy = 5.51 eV
+
+#------------------------------------------------------------------------------------------
+
+15,H2,O_1d,,H,OH,,,NONE,NONE,1.0e-10
+# 15 energy = 1.88 eV
+
+#------------------------------------------------------------------------------------------
+
+16,H2,O,,H,OH,,,NONE,NONE,1.6e-11 * exp(-4570.0 / Tneut)
+# 16 energy = 0.08 eV
+
+#------------------------------------------------------------------------------------------
+# this one has a catalyst
+
+17,H2,,,H,H,,,NONE,NONE,1.5e-9 * exp(-4.8e4 / Tneut) * total_density
+# 17 energy = -4.52 eV
+
+#------------------------------------------------------------------------------------------
+
+18,H,O2,,O,OH,,,NONE,NONE,3.7e-10 * exp(-8450.0 / Tneut)
+# 18 energy = -0.72 eV
+
+#------------------------------------------------------------------------------------------
+
+19,H,O3,,OH,O2,,,NONE,NONE,1.4e-10 * exp( -470.0 / Tneut )
+# 19 energy = 2.004 eV
+
+#------------------------------------------------------------------------------------------
+# this one has a catalyst
+
+20,H,H,,H2,,,,NONE,NONE,5.7e-32 * (300.0/Tneut)**1.6 * total_density
+# 20 energy = 4.52 eV
+
+#------------------------------------------------------------------------------------------
+
+21,H,H2O,,H2,OH,,,NONE,NONE,1.5e-10 * exp(-10250.0 / Tneut)
+# 21 energy = -0.65 eV
+
+#------------------------------------------------------------------------------------------
+
+22,OH,N,,NO,H,,,NONE,NONE,5.0e-11
+# 22 energy = 2.10 eV
+
+#------------------------------------------------------------------------------------------
+
+23,OH,O,,H,O2,,,NONE,NONE,2.0e-11 * exp(117.0 / Tneut)
+# 23 energy = 0.72 eV
+
+#------------------------------------------------------------------------------------------
+
+24,OH,CO,,CO2,H,,,NONE,NONE,1.5e-13
+# 24 energy = 1.07 eV
+
+#------------------------------------------------------------------------------------------
+
+25,OH,H2,,H2O,H,,,NONE,NONE,7.7e-12 * exp(-2100.0 / Tneut)
+# 25 energy = 0.65 eV
+
+#------------------------------------------------------------------------------------------
+# change rate from equation in Tian to KIDA value to be consistent
+# with backwards reaction
+
+26,OH,OH,,H2O,O,,,NONE,NONE,6.2e-14 * (Tneut/300.0)**(2.62) * exp(945.0/Tneut)
+# 26 energy = 0.73 eV
+
+#------------------------------------------------------------------------------------------
+
+# this one has a catalyst
+27,OH,H,,H2O,,,,NONE,NONE,6.1e-26 * Tneut**(-2.0) * total_density
+# 27 energy = 5.17 eV
+
+#------------------------------------------------------------------------------------------
+
+28,OH,H,,H2,O,,,NONE,NONE,1.4e-14 * Tneut * exp(-3500.0 / Tneut)
+# 28 energy = 0.08 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from 5e-11 * (300.0 / Tion) from Tian to a more complicated
+# temperature dependent formula from Fox & Sung
+# here, I will just give the lower part of that, and later in the file, I give the
+# other two parts for two other temperature ranges
+
+29,N2+,O2,,O2+,N2,,,0.1,1000.0,5.1e-11 * (300.0 / TgasNI)**(1.16)
+# 29 energy = 3.52 eV
+
+#------------------------------------------------------------------------------------------
+# reactions 30 and 31 are in fact the same reaction with two different temperature ranges
+# rate equations changed from Tian values to Fox & Sung values
+
+30,N2+,O,,NO+,N_2d,,,1500.0,1000000.0,6.55e-11 * (TgasNI/1500.0)**0.2
+# 30 energy = 0.70 eV
+
+31,N2+,O,,NO+,N_2d,,,0.1,1500.0,1.33e-10 * (TgasNI/300.0)**(-0.44)
+# 31 energy = 0.70 eV
+
+#------------------------------------------------------------------------------------------
+# reactions 32 and 33 are in fact the same reaction with two different temperature ranges
+# rate equations changed from Tian values to Fox & Sung values
+
+32,N2+,O,,O+,N2,,,1500.0,1000000.0,4.83e-12 * (TgasNI / 1500.0)**(0.41)
+# 32 energy = 1.96 eV
+
+33,N2+,O,,O+,N2,,,0.1,1500.0,7.0e-12 * (TgasNI / 300.0)**(-0.23)
+# 33 energy = 1.96 eV
+
+#------------------------------------------------------------------------------------------
+# rate changed from 4.1e-10 from Tian to 3.6e-10 from Fox & Sung
+
+34,N2+,NO,,NO+,N2,,,NONE,NONE,3.6e-10
+# 34 energy = 6.25 eV
+
+#------------------------------------------------------------------------------------------
+# changed from 8.0e-10 from Tian to 9.0e-10*(300.0/Tgas)**(0.28) from Fox & Sung
+
+35,N2+,CO2,,CO2+,N2,,,NONE,NONE,9.0e-10*(300.0/TgasNI)**(0.28)
+# 35 energy = 1.81 eV
+
+#------------------------------------------------------------------------------------------
+
+36,N2+,CO,,CO+,N2,,,NONE,NONE,7.40e-11
+# 36 energy = 1.57 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from Tian values to temperature dependent values to Fox & Sung equations
+# the other reaction for the other part is late in this file
+
+37,N+,O2,,O+,NO,,,0.1,1000.0,4.34e-11 * (300.0/TgasNI)**(-0.45)
+# 37 energy = 1.28 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from Tian values to temperature dependent values to Fox & Sung equations
+# the other reaction for the other part is late in this file
+
+38,N+,O2,,O2+,N_2d,,,0.1,1000.0,8.65e-11 * (300.0/TgasNI)**(-0.45)
+# 38 energy = 0.10 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from Tian values to temperature dependent values to Fox & Sung equations
+# the other reaction for the other part is late in this file
+
+39,N+,O2,,O2+,N,,,0.1,1000.0,2.02e-10 * (300.0/TgasNI)**(-0.45)
+# 39 energy = 2.49 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from Tian values to temperature dependent values to Fox & Sung equations
+# the other reaction for the other part is late in this file
+
+40,N+,O2,,NO+,O,,,0.1,1000.0,4.32e-11 * (300.0/TgasNI)**(-0.45)
+# 40 energy = 6.70 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from Tian value of 1.0e-12 to Fox & Sung of 2.2e-12
+
+41,N+,O,,O+,N,,,NONE,NONE,2.2e-12
+# 41 energy = 0.98 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from 9.0e-10 from Tian to 4.72e-10 * (300.0/Tgas)**(0.24) from Fox & Sung
+
+42,N+,NO,,NO+,N,,,NONE,NONE,4.72e-10 * (300.0/TgasNI)**(0.24)
+# 42 energy = 5.29 eV
+
+#------------------------------------------------------------------------------------------
+
+43,N+,CO2,,CO2+,N,,,NONE,NONE,9.2e-10
+# 43 energy = 0.78 eV
+
+#------------------------------------------------------------------------------------------
+
+44,N+,CO2,,CO+,NO,,,NONE,NONE,2.0e-10
+# 44 energy = 1.57 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from 4.0e-10 in Tian to 4.93e-10 * (300.0/Tgas)**(0.5)
+
+45,N+,CO,,CO+,N,,,NONE,NONE,4.93e-10 * (300.0/TgasNI)**(0.5)
+# 45 energy = 0.54 eV
+
+#------------------------------------------------------------------------------------------
+
+46,N+,H,,H+,N,,,NONE,NONE,3.6e-12
+# 46 energy = 0.90 eV
+
+#------------------------------------------------------------------------------------------
+# changed from 5.0e-16 from Tian to 1.0e-15 from Fox & Sung
+
+47,O2+,N2,,NO+,NO,,,NONE,NONE,1.0e-15
+# 47 energy = 0.93 eV
+
+#------------------------------------------------------------------------------------------
+# changed from 1.5e-10 from Tian to 1.0e-10 from Fox & Sung
+
+48,O2+,N,,NO+,O,,,NONE,NONE,1.0e-10
+# 48 energy = 4.21 eV
+
+#------------------------------------------------------------------------------------------
+
+49,O2+,NO,,NO+,O2,,,NONE,NONE,4.4e-10
+# 49 energy = 2.81 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from 8.0e-13 from Tian to two temp rate from Fox & Sung, the other component is low in file
+
+50,O+,NO,,NO+,O,,,0.1,300.0,7.0e-13 * (300.0/TgasNI)**(0.66)
+# 50 energy = 4.36 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from Tian value to temperature dependent two component values from Fox & Sung
+
+51,O+,CO2,,O2+,CO,,,0.1,800.0,1.1e-9
+# 51 energy = 1.20 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from 2.0e-9 from Tian to Fox (2015) value
+
+52,O+,H2,,OH+,H,,,NONE,NONE,1.65e-9
+# 52 energy = 0.36 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from 6.0e-10 from Tian to Fox & Sung value
+# changed from Fox & Sung to Garcia Munoz (2007)
+
+53,O+,H,,H+,O,,,NONE,NONE,7.26e-11 * TgasNI**(0.36) * exp(8.6/TgasNI)
+# 53 energy = 0.02 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from Tian value to two temperature rates from Fox & Sung, the other component is lower in this file
+
+54,O+,N2,,NO+,N,,,0.1,1000.0,1.20e-12 * (300.0/TgasNI)**(0.45)
+# 54 energy = 1.09 eV
+
+#------------------------------------------------------------------------------------------
+# replaced rate equation from Tian with new values from Fox & Sung
+# the Fox & Sung rates are temperature dependent, the other component is late in this file
+
+55,O+,O2,,O2+,O,,,0.1,900.0,1.6e-11 * (300.0/TgasNI)**(0.52)
+# 55 energy = 1.56 eV
+
+#------------------------------------------------------------------------------------------
+
+56,O+,N_2d,,N+,O,,,NONE,NONE,1.3e-10
+# 56 energy = 1.45 eV
+
+#------------------------------------------------------------------------------------------
+# change rate from 4.8e-10 from Tian to value from Richards & Voglozin (2011)
+
+57,O+_2p,N2,,N2+,O,,,NONE,NONE,2.0e-10 * (300.0/TgasNI)**(-0.55)
+# 57 energy = 3.02 eV
+
+#------------------------------------------------------------------------------------------
+
+58,O+_2p,N2,,N+,NO,,,NONE,NONE,1.0e-10
+# 58 energy = 0.70 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from 5.2e-11 from Tian to value from Richards & Voglozin (2011)
+
+59,O+_2p,O,,O+,O,,,NONE,NONE,4.0e-10
+# 59 energy = 5.20 eV
+
+#------------------------------------------------------------------------------------------
+# this one emits a photon, should maybe include as cooling process
+
+60,O+_2p,,,O+,,,,NONE,NONE,0.047
+# 60 energy = 0.0 eV
+
+#------------------------------------------------------------------------------------------
+# this one emits a photon, should maybe include as cooling process
+
+61,O+_2p,,,O+_2d,,,,NONE,NONE,0.171
+# 61 energy = 0.0 eV
+
+#------------------------------------------------------------------------------------------
+
+62,O+_2d,N2,,O+,N2,,,NONE,NONE,8.0e-10
+# 62 energy = 3.31 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from 1.0e-10 over entire temp range from Tian to values from Fox & Sung
+# changed again from Fox & Sung to calue from Richards & Voglozin (2011)
+
+63,O+_2d,N2,,N2+,O,,,NONE,NONE,1.5e-10 * (300.0/TgasNI)**(-0.55)
+# 63 energy = 1.33 eV
+
+#------------------------------------------------------------------------------------------
+
+64,O+_2d,O,,O+,O,,,NONE,NONE,1.0e-11
+# 64 energy = 3.31 eV
+
+#------------------------------------------------------------------------------------------
+
+65,O+_2d,O2,,O2+,O,,,NONE,NONE,7.0e-10
+# 65 energy = 4.87 eV
+
+#------------------------------------------------------------------------------------------
+# emits photon, probably should be coolin
+# change from 7.7e-5 from Tian to value from Fox & Sung
+
+66,O+_2d,,,O+,,,,NONE,NONE,4.85e-5
+# 66 energy = 0.0 eV
+
+#------------------------------------------------------------------------------------------
+
+67,H2+,O,,OH+,H,,,NONE,NONE,1.5e-9
+# 67 energy = 2.17 eV
+
+#------------------------------------------------------------------------------------------
+# replaced rates from Tian with rates from Fox (2015)
+
+68,H2+,H2,,H3+,H,,,NONE,NONE,2.24e-9 * (TgasNI/300.0)**(-0.042) * exp(-TgasNI/46600.0)
+# 68 energy = 1.70 eV
+
+#------------------------------------------------------------------------------------------
+
+69,H2+,H,,H+,H2,,,NONE,NONE,6.4e-10
+# 69 energy = 1.83 eV
+
+#------------------------------------------------------------------------------------------
+
+70,H+,O,,O+,H,,,NONE,NONE,6.0e-10 * (8.0/9.0)
+# 70 energy = -0.02 eV
+
+#------------------------------------------------------------------------------------------
+
+71,H+,NO,,NO+,H,,,NONE,NONE,1.9e-9
+# 71 energy = 4.34 eV
+
+#------------------------------------------------------------------------------------------
+
+72,H+,H2,,H2+,H,,,NONE,NONE,1.0e-9 * exp(-2.19e4 / TgasNI)
+# 72 energy = -1.83 eV
+
+#------------------------------------------------------------------------------------------
+# change rate from 2.0e-9 from Tian to value from Garcia Munoz (2007). This is also
+# in agreement with values on KIDA
+
+73,H3+,H,,H2+,H2,,,NONE,NONE,2.08e-9 * exp(-19900.0/TgasNI)
+# 73 energy = -1.70 eV
+
+#------------------------------------------------------------------------------------------
+
+74,CO2+,O,,O2+,CO,,,NONE,NONE,1.6e-10
+# 74 energy = 1.33 eV
+
+#------------------------------------------------------------------------------------------
+
+75,CO2+,O,,O+,CO2,,,NONE,NONE,1.0e-10
+# 75 energy = 0.13 eV
+
+#------------------------------------------------------------------------------------------
+
+76,CO2+,NO,,NO+,CO2,,,NONE,NONE,1.2e-10
+# 76 energy = 4.51 eV
+
+#------------------------------------------------------------------------------------------
+# rate changed from 1.0e-10 from Tian to 2.35e-11 from Fox & Sung
+
+77,CO2+,H,,H+,CO2,,,NONE,NONE,2.35e-11
+# 77 energy = 0.17 eV
+
+#------------------------------------------------------------------------------------------
+
+78,CO+,O,,O+,CO,,,NONE,NONE,1.4e-10
+# 78 energy = 0.39 eV
+
+#------------------------------------------------------------------------------------------
+# rate changed from 3.3e-10 from Tian to 4.2e-10 from Fox & Sung
+
+79,CO+,NO,,NO+,CO,,,NONE,NONE,4.2e-10
+# 79 energy = 4.75 eV
+
+#------------------------------------------------------------------------------------------
+
+80,CO+,CO2,,CO2+,CO,,,NONE,NONE,1.1e-9
+# 80 energy = 0.24 eV
+
+#------------------------------------------------------------------------------------------
+
+81,N2+,e,,N,N,,,NONE,NONE,2.2e-7 * (300.0 / TgasIE)**(0.39) * 0.1
+# 81 energy = 5.82 eV
+
+#------------------------------------------------------------------------------------------
+# in 82 (80 of Tian et al), it seems Tian wrote it wrong, with N(4D) instead of N(2D)
+
+82,N2+,e,,N,N_2d,,,NONE,NONE,2.2e-7 * (300.0 / TgasIE)**(0.39) * 0.9
+# 82 energy = 3.44 eV
+
+#------------------------------------------------------------------------------------------
+# emits photon, should be cooling
+
+83,N+,e,,N,,,,NONE,NONE,3.6e-12 * (250.0 / TgasIE)**(0.7)
+# 83 energy = 14.54 eV
+
+#------------------------------------------------------------------------------------------
+# both 84 and 85 are the same reactions with different temperature ranges
+
+84,O2+,e,,O,O,,,1200.0,1000000.0,0.22 * 7.38e-8 * (1200.0 / TgasIE)**(0.56)
+# 84 energy = 6.99 eV
+
+85,O2+,e,,O,O,,,0.1,1200.0,0.22 * 1.95e-7 * (300.0 / TgasIE)**(0.7)
+# 85 energy = 6.99 eV
+
+#------------------------------------------------------------------------------------------
+# both 86 and 87 are the same reactions with different temperature ranges
+
+86,O2+,e,,O,O_1d,,,1200.0,1000000.0,0.42 * 7.38e-8 * (1200.0 / TgasIE)**(0.56)
+# 86 energy = 5.02 eV
+
+87,O2+,e,,O,O_1d,,,0.1,1200.0,0.42 * 1.95e-7 * (300.0 / TgasIE)**(0.7)
+# 87 energy = 5.02 eV
+
+#------------------------------------------------------------------------------------------
+# both 88 and 89 are the same reactions with different temperature ranges
+
+88,O2+,e,,O_1d,O_1d,,,1200.0,1000000.0,0.36 * 7.38e-8 * (1200.0 / TgasIE)**(0.56)
+# 88 energy = 3.06 eV
+
+89,O2+,e,,O_1d,O_1d,,,0.1,1200.0,0.36 * 1.95e-7 * (300.0 / TgasIE)**(0.7)
+# 89 energy = 3.06 eV
+
+#------------------------------------------------------------------------------------------
+# photon emitted, should be cooling
+
+90,O+,e,,O,,,,NONE,NONE,3.7e-12 * (250.0 / TgasIE)**(0.7)
+# 90 energy = 13.61 eV
+
+#------------------------------------------------------------------------------------------
+
+91,NO+,e,,N,O,,,NONE,NONE,4.2e-7 * (300.0 / TgasIE)**(0.85) * 0.2
+# 91 energy = 2.75 eV
+
+#------------------------------------------------------------------------------------------
+
+92,NO+,e,,N_2d,O,,,NONE,NONE,4.2e-7 * (300.0 / TgasIE)**(0.85) * 0.8
+# 92 energy = 0.38 eV
+
+#------------------------------------------------------------------------------------------
+# photon emitted, should be cooling
+# in Tian, this reaction rate was written 5 orders of magnitude too fast, probably because
+# of a typo. They reference Yelle (2004) which seems to give correct value. The value is also
+# used in Koskinen et al. (2013).
+
+93,H+,e,,H,,,,NONE,NONE,4.0e-12 * (300.0 / TgasIE)**(0.64)
+# 93 energy = 13.60 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from Tian to rate from Fox (2015)
+
+94,H2+,e,,H,H,,,NONE,NONE,1.75e-8 * (300.0 / TgasIE)**(0.4)
+# 94 energy = 10.91 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from Tian to rate from Fox (2015)
+
+95,H3+,e,,H2,H,,,NONE,NONE,1.7e-8 * (300.0 / TgasIE)**(0.52)
+# 95 energy = 9.21 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from Tian to rate from Fox (2015)
+
+96,H3+,e,,H,H,H,,NONE,NONE,5.1e-8 * (300.0 / TgasIE)**(0.52)
+# 96 energy = 4.69 eV
+
+#------------------------------------------------------------------------------------------
+# change rate from Tian value of 2.0e-7 to value from Garcia Munoz (2007)
+
+97,OH+,e,,O,H,,,NONE,NONE,6.5e-7 * TgasIE**(-0.5)
+# 97 energy = 8.74 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from Tian to rate from Fox & Sung
+
+98,CO2+,e,,CO,O,,,NONE,NONE,3.5e-7 * (300.0/TgasIE)**(0.5)
+# 98 energy = 4.56 eV
+
+#------------------------------------------------------------------------------------------
+# changed the rate from Tian to the rates from Fox & Sung
+# funnily enough, these two rate equations have opposite temperature dependences
+
+99,N_2d,e,,N,e,,,NONE,NONE,3.86e-10 * (TgasNE/300.0)**0.81
+# 99 energy = 2.38 eV
+
+#------------------------------------------------------------------------------------------
+# changed rates from Tian to Fox & Sung values
+
+100,O+_2p,e,,O+,e,,,NONE,NONE,3.03e-8 * (300.0 / TgasIE)**(0.5)
+# 100 energy = 5.00 eV
+
+#------------------------------------------------------------------------------------------
+# changed rates from Tian to Fox & Sung values
+
+101,O+_2p,e,,O+_2d,e,,,NONE,NONE,1.84e-7 * (300.0/TgasIE)**0.5
+# 101 energy = 1.69 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from Tian equation to Fox & Sung equation
+
+102,O+_2d,e,,O+,e,,,NONE,NONE,6.03e-8 * (300.0/TgasIE)**0.5
+# 102 energy = 3.31 eV
+
+#------------------------------------------------------------------------------------------
+# this one has a catalyst
+
+103,H,O2,,HO2,,,,NONE,NONE,5.5e-32 * (300.0/Tneut)**1.6 * total_density
+# 103 energy = 2.11 eV
+
+#------------------------------------------------------------------------------------------
+
+104,HO2,H,,H2O,O,,,NONE,NONE,8.1e-11 * 0.02
+# 104 energy = 2.34 eV
+
+#------------------------------------------------------------------------------------------
+
+105,HO2,H,,H2,O2,,,NONE,NONE,8.1e-11 * 0.08
+# 105 energy = 2.41 eV
+
+#------------------------------------------------------------------------------------------
+
+106,HO2,H,,OH,OH,,,NONE,NONE,8.1e-11 * 0.9
+# 106 energy = 1.61 eV
+
+#------------------------------------------------------------------------------------------
+
+107,HO2,OH,,H2O,O2,,,NONE,NONE,4.8e-11 * exp(250.0 / Tneut)
+# 107 energy = 3.06 eV
+
+#------------------------------------------------------------------------------------------
+
+108,OH,O3,,HO2,O2,,,NONE,NONE,1.6e-12 * exp(-940.0 / Tneut)
+# 108 energy = 1.73 eV
+
+#------------------------------------------------------------------------------------------
+
+109,HO2,O,,OH,O2,,,NONE,NONE,3.0e-11 * exp(200.0 / Tneut)
+# 109 energy = 2.33 eV
+
+#------------------------------------------------------------------------------------------
+
+110,HO2,O3,,OH,O2,O2,,NONE,NONE,1.1e-14 * exp(-500.0 / Tneut)
+# 110 energy = 1.23 eV
+
+#------------------------------------------------------------------------------------------
+
+111,HO2,HO2,,H2O2,O2,,,NONE,NONE,2.3e-13 * exp(600.0/Tneut)
+# 111 energy = 1.71 eV
+
+#------------------------------------------------------------------------------------------
+
+112,H2O2,OH,,HO2,H2O,,,NONE,NONE,2.9e-12 * exp(-160.0 / Tneut)
+# 112 energy = 1.35 eV
+
+#------------------------------------------------------------------------------------------
+
+113,H2O2,O,,HO2,OH,,,NONE,NONE,1.4e-12 * exp(-2000.0 / Tneut)
+# 113 energy = 3.44 eV
+
+#------------------------------------------------------------------------------------------
+
+114,O_1d,O2,,O2_sg,O,,,NONE,NONE,3.2e-11 * exp(70.0/Tneut) * 0.75
+# 114 energy = 0.33 eV
+
+#------------------------------------------------------------------------------------------
+
+115,O_1d,O2,,O2,O,,,NONE,NONE,3.2e-11 * exp(70.0/Tneut) * 0.25
+# 115 energy = 1.96 eV
+
+#------------------------------------------------------------------------------------------
+# changed rate from 8.0e-12 from Tian to Fox & Sung equation
+
+116,O_1d,O,,O,O,,,NONE,NONE,6.47e-12 * (Tneut/300.0)**0.14
+# 116 energy = 1.96 eV
+
+#------------------------------------------------------------------------------------------
+
+# THIS IS THE SAME AS REACTION 15! Set rate to zero
+#117,O_1d,H2,,H,OH,,,NONE,NONE,1.0e-10
+117,O_1d,H2,,H,OH,,,NONE,NONE,0.0
+# 117 energy = 1.88 eV
+
+#------------------------------------------------------------------------------------------
+
+118,O_1d,CO2,,O,CO2,,,NONE,NONE,7.4e-11 * exp(120.0/Tneut)
+# 118 energy = 1.96 eV
+
+#------------------------------------------------------------------------------------------
+
+119,O_1d,O3,,O2,O2,,,NONE,NONE,1.2e-10
+# 119 energy = 6.03 eV
+
+#------------------------------------------------------------------------------------------
+
+120,O_1d,O3,,O2,O,O,,NONE,NONE,1.2e-10
+# 120 energy = 0.87 eV
+
+#------------------------------------------------------------------------------------------
+
+121,N_2d,CO2,,NO,CO,,,NONE,NONE,3.5e-13
+# 121 energy = 3.41 eV
+
+#------------------------------------------------------------------------------------------
+
+122,N_2d,N2,,N,N2,,,NONE,NONE,1.7e-14
+# 122 energy = 2.38 eV
+
+#------------------------------------------------------------------------------------------
+
+123,O2_sg,N2,,O2_dg,N2,,,NONE,NONE,2.1e-15
+# 123 energy = 0.65 eV
+
+#------------------------------------------------------------------------------------------
+
+124,O2_sg,CO2,,O2_dg,CO2,,,NONE,NONE,4.2e-13
+# 124 energy = 0.65 eV
+
+#------------------------------------------------------------------------------------------
+
+125,O2_sg,O3,,O2_dg,O3,,,NONE,NONE,2.2e-11
+# 125 energy = 0.65 eV
+
+#------------------------------------------------------------------------------------------
+
+126,O2_sg,O,,O2_dg,O,,,NONE,NONE,8.0e-14
+# 126 energy = 0.65 eV
+
+#------------------------------------------------------------------------------------------
+
+127,O2_sg,O2,,O2_dg,O2,,,NONE,NONE,3.9e-17
+# 127 energy = 0.65 eV
+
+#------------------------------------------------------------------------------------------
+
+128,O2_dg,O2,,O2,O2,,,NONE,NONE,3.6e-18 * exp(-220.0/Tneut)
+# 128 energy = 0.98 eV
+
+#------------------------------------------------------------------------------------------
+
+129,O2_dg,N2,,O2,N2,,,NONE,NONE,1.0e-20
+# 129 energy = 0.98 eV
+
+#------------------------------------------------------------------------------------------
+
+130,O2_dg,O,,O2,O,,,NONE,NONE,1.3e-16
+# 130 energy = 0.98 eV
+
+#------------------------------------------------------------------------------------------
+# emits photon, should cool
+
+131,O2_dg,,,O2,,,,NONE,NONE,2.58e-4
+# 131 energy = 0.0 eV
+
+#------------------------------------------------------------------------------------------
+# emits photon, should cool
+
+132,O2_sg,,,O2,,,,NONE,NONE,0.085
+# 132 energy = 0.0 eV
+
+#------------------------------------------------------------------------------------------
+
+@photo_start
+
+@format:idx,R,P,P,P,Tmin,Tmax,rate
+
+133,N2,N,N_2d,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/N2_to_N_N.dat
+# 133 bonding_energy = 9.79 eV
+
+# this one should corespond mostly to absorption in the Shumman-Runge continuum
+134,O2,O,O_1d,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/O2_to_O_O1d.dat
+# 134 bonding_energy = 5.15 eV
+
+# this one might corespond mostly to absorption in the Shumman-Runge bands (check)
+135,O2,O,O,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/O2_to_O_O.dat
+# 135 bonding_energy = 5.15 eV
+
+136,O3,O2,O_1d,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/zero.dat
+# 136 bonding_energy = 0.0 eV
+
+137,O3,O2,O,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/O3_to_O2_O.dat
+# 137 bonding_energy = 3.78 eV
+
+138,NO,N,O,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/NO_to_N_O.dat
+# 138 bonding_energy = 6.49 eV
+
+139,CO2,CO,O,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CO2_to_CO_O.dat
+# 139 bonding_energy = 10.90 eV
+
+140,CO2,CO,O_1d,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CO2_to_CO_O1D.dat
+# 140 bonding_energy = 7.38 eV
+
+141,H2O,H,OH,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/H2O_to_H_OH.dat
+# 141 bonding_energy = 6.67 eV
+
+142,H2O,H2,O_1d,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/H2O_to_H2_O1D.dat
+# 142 bonding_energy = 8.56 eV
+
+143,H2O2,OH,OH,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/H2O2_to_OH_OH.dat
+# 143 bonding_energy = 2.17 eV
+
+144,O3,O2_dg,O_1d,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/O3_to_O2dg_O1d.dat
+# 144 bonding_energy = 3.90 eV
+
+145,N2,N2+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/N2_to_N2j_E.dat
+# 145 bonding_energy = 15.56 eV
+
+146,N2,N+,N,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/N2_to_Nj_N_E.dat
+# 146 bonding_energy = 24.30 eV
+
+147,N2,N+,N_2d,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/zero.dat
+# 147 bonding_energy = 24.30 eV
+
+148,N,N+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/N_to_Nj_E.dat
+# 148 bonding_energy = 14.45 eV
+
+149,O2,O2+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/O2_to_O2j_E.dat
+# 149 bonding_energy = 7.05 eV
+
+150,O2,O+,O,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/O2_to_Oj_O_E.dat
+# 150 bonding_energy = 21.0 eV
+
+151,O2,O+_2p,O,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/zero.dat
+# 151 bonding_energy = 0.0 eV
+
+152,O2,O+_2d,O,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/zero.dat
+# 152 bonding_energy = 0.0 eV
+
+153,O,O+,e,,NONE,NONE,@xsecFile=../../../Data/Conway1988/O_to_Oj_E.dat
+# 153 bonding_energy = 13.62 eV
+
+154,O,O+_2p,e,,NONE,NONE,@xsecFile=../../../Data/Conway1988/O_to_Oj2P_E.dat
+# 154 bonding_energy = 18.6 eV
+
+155,O,O+_2d,e,,NONE,NONE,@xsecFile=../../../Data/Conway1988/O_to_Oj2D_E.dat
+# 155 bonding_energy = 16.9 eV
+
+156,NO,NO+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/NO_to_NOj_E.dat
+# 156 bonding_energy = 9.27 eV
+
+157,H2,H2+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/H2_to_H2j_E.dat
+# 157 bonding_energy = 15.43 eV
+
+158,H2,H+,H,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/H2_to_H_Hj_E.dat
+# 158 bonding_energy = 17.71 eV
+
+159,H,H+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/H_to_Hj_E.dat
+# 159 bonding_energy = 13.6 eV
+
+
+#---------------------------------------------
+# NEW PHOTO-REACTIONS FOUND ON PHIDRATES
+
+160,NO,O+,N,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/NO_to_Nj_O_E.dat
+# 160 bonding_energy = 20.791 eV
+
+161,NO,N+,O,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/NO_to_Oj_N_E.dat
+# 161 bonding_energy = 20.097 eV
+
+162,CO2,CO2+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CO2_to_CO2j_E.dat
+# 162 bonding_energy = 13.777 eV
+
+163,CO2,CO+,O,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CO2_to_COj_O_E.dat
+# 163 bonding_energy = 19.478 eV
+
+164,CO2,O+,CO,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CO2_to_Oj_CO_E.dat
+# 164 bonding_energy = 18.809 eV
+
+165,H2O,O,H,H,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/H2O_to_O_H_H.dat
+# 165 bonding_energy = 9.525 eV
+
+166,H2O,OH+,H,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/H2O_to_OHj_H_E.dat
+# 166 bonding_energy = 17.729 eV
+
+167,H2O,O+,H2,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/H2O_to_Oj_H2_E.dat
+# 167 bonding_energy = 18.250 eV
+
+168,H2O,H+,OH,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/H2O_to_Hj_OH_E.dat
+# 168 bonding_energy = 18.250 eV
+
+169,H2O,H2O+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/H2O_to_H2Oj_E.dat
+# 169 bonding_energy = 12.624 eV
+
+170,O_1d,O+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/O1D_to_Oj_E.dat
+# 170 bonding_energy = 15.692 eV
+
+#---------------------------------------------
+
+
+@photo_stop
+
+
+
+
+#----------------------------------------------------------------
+# ADDITIONAL REACTIONS FROM FOX & SUNG
+@format:idx,R,R,R,P,P,P,P,Tmin,Tmax,rate
+
+171,CO2+,O2,,CO2,O2+,,,0.1,1500,5.5e-11 * (300.0/TgasNI)**(0.82)
+# 171 energy = 1.77 eV # KIDA
+
+172,CO2+,O2,,CO2,O2+,,,1500,10000000.0,1.5e-11 * (TgasNI/1500.0)**(0.75)
+# 172 energy = 1.77 eV # KIDA
+
+173,CO2+,N,,NO,CO+,,,NONE,NONE,3.4e-10
+# 173 energy = 5.03 eV
+
+174,CO2+,N_2d,,N+,CO2,,,NONE,NONE,2.0e-10
+# 174 energy = 0.0 eV
+
+
+175,CO2+,H,,HCO+,O,,,NONE,NONE,4.46e-10
+# 175 energy = 0.9 eV # KIDA
+
+176,CO+,O2,,O2+,CO,,,NONE,NONE,1.5e-10 * (300.0/TgasNI)**(1.1)
+# 176 energy = 2.04 eV # KIDA
+
+177,CO+,H2,,HCO+,H,,,NONE,NONE,7.5e-10
+# 177 energy = 2.12 eV # KIDA
+
+178,CO,,,CO,,,,NONE,NONE,0.0
+# 178 energy = 0.0 eV
+
+
+179,CO+,H,,H+,CO,,,NONE,NONE,4.0e-10
+# 179 energy = 0.53 eV # KIDA
+
+180,CO+,N,,NO+,C,,,NONE,NONE,8.2e-11
+# 180 energy = 0.26 eV # KIDA
+
+181,O2+,N_2d,,NO+,O,,,NONE,NONE,1.8e-10
+# 181 energy = 0.0 eV
+
+182,O2+,N_2d,,N+,O2,,,NONE,NONE,8.65e-11
+# 182 energy = 0.0 eV
+
+183,O2+,C,,CO+,O,,,NONE,NONE,5.0e-11
+# 183 energy = 4.18 eV # KIDA
+
+184,O2+,C,,C+,O2,,,NONE,NONE,5.0e-11
+# 184 energy = 0.88 eV # KIDA
+
+185,N2+,N,,N+,N2,,,NONE,NONE,1.0e-11
+# 185 energy = 1.31 eV # KIDA
+
+# the following reaction is a continuation of reaction 29 for two more different temperature ranges
+186,N2+,O2,,O2+,N2,,,1000.0,2000.0,1.26e-11 * (TgasNI/1000.0)**(0.57)
+# 186 energy = 3.52 eV
+187,N2+,O2,,O2+,N2,,,2000.0,10000000.0,2.39e-11
+# 187 energy = 3.52 eV
+
+188,N2+,Ar,,Ar+,N2,,,NONE,NONE,1.10e-11*exp(-2089.0/TgasNI)
+# 188 energy = 15.53 eV
+
+189,N2+,H2,,N2H+,H,,,NONE,NONE,1.52e-9
+# 189 energy = 2.60 eV # KIDA
+
+190,N+,NO,,N2+,O,,,NONE,NONE,8.33e-11 * (300.0/TgasNI)**(0.24)
+# 190 energy = 2.31 eV # KIDA
+
+191,N+,CO,,NO+,C,,,NONE,NONE,6.16e-11 * (300.0/TgasNI)**(0.5)
+# 191 energy = 0.78 eV # KIDA
+
+192,N+,CO,,C+,NO,,,NONE,NONE,5.60e-12 * (300.0/TgasNI)**(0.5)
+# 192 energy = -1.28 eV # KIDA
+
+# this reaction is a continuation of reaction 39 and gives the other temperature component
+193,N+,O2,,O2+,N,,,1000.0,100000000.0,3.49e-10
+# 193 energy = 2.49 eV
+
+# this reaction is a continuation of reaction 38 and gives the other temperature component
+194,N+,O2,,O2+,N_2d,,,0.1,1000.0,1.49e-10
+# 194 energy = 0.10 eV
+
+# this reaction is a continuation of reaction 40 and gives the other temperature component
+195,N+,O2,,NO+,O,,,1000.0,100000000.0,7.47e-11
+# 195 energy = 6.70 eV
+
+196,N+,O2,,NO+,O_1d,,,0.1,1000.0,1.75e-10 * (300.0/TgasNI)**(-0.45)
+# 196 energy = 0.0 eV
+
+197,N+,O2,,NO+,O_1d,,,1000.0,10000000.0,3.02e-10
+# 197 energy = 0.0 eV
+
+# this reaction is a continuation of reaction 37 and gives the other temperature component
+198,N+,O2,,O+,NO,,,1000.0,100000000.0,7.53e-11
+# 198 energy = 1.28 eV
+
+# updated rates from Fox & Sung (2001) to rate from Fox (2015)
+199,N+,H2,,NH+,H,,,NONE,NONE,8.23e-10 * exp(-209.0/TgasNI)
+# 199 energy = 0.071 eV # KIDA
+
+# this reaction is a continuation of reaction 55 and gives the other temperature component
+200,O+,O2,,O2+,O,,,900.0,100000000.0,9.0e-12 * (TgasNI/900.0)**(0.92)
+# 200 energy = 1.56 eV
+
+# this reaction is a continuation of reaction 50 and gives the other temperature component
+201,O+,NO,,NO+,O,,,300.0,10000000.0,7.0e-13 * (TgasNI/300.0)**(0.87)
+# 201 energy = 4.36 eV
+
+# this reaction is a continuation of reaction 51 and gives the other temperature component
+202,O+,CO2,,O2+,CO,,,800.0,100000000.0,1.1e-9 * (TgasNI/800.0)**(-0.39)
+# 202 energy = 1.20 eV
+
+# this reaction is a continuation of reaction 54 and gives the other temperature component
+203,O+,N2,,NO+,N,,,1000.0,10000000.0,7.0e-13 * (TgasNI/1000.0)**(2.12)
+# 203 energy = 1.09 eV
+
+204,O+,C,,C+,O,,,NONE,NONE,1.0e-10
+# 204 energy = 19.44 eV
+
+205,O+_2d,CO2,,O2+,CO,,,NONE,NONE,6.0e-11
+# 205 energy = 0.0 eV
+
+206,O+_2d,CO2,,CO2+,O,,,NONE,NONE,1.0e-9
+# 206 energy = 0.0 eV
+
+207,O+_2d,CO,,CO+,O,,,NONE,NONE,1.3e-9
+# 207 energy = 0.0 eV
+
+208,O+_2d,NO,,NO+,O,,,NONE,NONE,1.2e-9
+# 208 energy = 0.0 eV
+
+209,O+_2d,N,,N+,O,,,NONE,NONE,1.5e-10
+# 209 energy = 0.0 eV
+
+210,O+_2d,H2,,OH+,H,,,NONE,NONE,1.5e-9
+# 210 energy = 0.0 eV
+
+# replaced rates from Fox & Sung (2001) to rate from Fox (2015)
+211,O+_2d,H2,,H2+,O,,,NONE,NONE,1.645e-10 * (TgasNI/300.0)**(-0.98) * exp(-302.4/TgasNI)
+# 211 energy = 0.0 eV
+
+# replaced rates from Fox & Sung (2001) to rate from Fox (2015)
+212,O+_2d,H2,,H+,OH,,,NONE,NONE,7.2e-11 * (TgasNI/300.0)**(-0.95) * exp(-335.1/TgasNI)
+# 212 energy = 0.0 eV
+
+213,O+_2p,CO2,,CO,O2+,,,NONE,NONE,6.0e-11
+# 213 energy = 0.0 eV
+
+214,O+_2p,CO2,,CO2+,O,,,NONE,NONE,1.0e-9
+# 214 energy = 0.0 eV
+
+215,O+_2p,CO,,CO+,O,,,NONE,NONE,1.3e-9
+# 215 energy = 0.0 eV
+
+216,O+_2p,O2,,O+,O2,,,NONE,NONE,1.3e-10
+# 216 energy = 0.0 eV
+
+217,O+_2p,N2,,O+,N2,,,0.1,4000.0,6.2e-10 * exp(-340.0/TgasNI)
+# 217 energy = 0.0 eV
+
+218,O+_2p,N,,O+,N_2d,,,NONE,NONE,1.0e-11
+# 218 energy = 0.0 eV
+
+219,O+_2p,NO,,NO+,O,,,NONE,NONE,1.2e-9
+# 219 energy = 0.0 eV
+
+220,O+_2p,H2,,OH+,H,,,NONE,NONE,8.5e-10
+# 220 energy = 0.0 eV
+
+# replaced rates from Fox & Sung (2001) to rate from Fox (2015)
+221,O+_2p,H2,,H2+,O,,,NONE,NONE,1.01e-9 * (TgasNI/300.0)**(-0.98) * exp(-285.0/TgasNI)
+# 221 energy = 0.0 eV
+
+# replaced rates from Fox & Sung (2001) to rate from Fox (2015)
+222,O+_2p,H2,,H+,OH,,,NONE,NONE,2.16e-10 * (TgasNI/300.0)**(-0.97) * exp(-292.0/TgasNI)
+# 222 energy = 0.0 eV
+
+# replaced rates from Fox & Sung (2001) to rate from Fox (2015)
+223,O+_2p,H2,,H+,O,H,,NONE,NONE,2.16e-10 * (TgasNI/300.0)**(-0.97) * exp(-292.0/TgasNI)
+# 223 energy = 0.0 eV
+
+224,C+,CO2,,CO+,CO,,,NONE,NONE,1.1e-9
+# 224 energy = 3.02 eV # KIDA
+
+225,C+,NO,,NO+,C,,,NONE,NONE,7.5e-10 * (300.0/TgasNI)**(0.2)
+# 225 energy = 2.12 eV # KIDA
+
+226,C+,O2,,O+,CO,,,NONE,NONE,5.22e-10
+# 226 energy = 3.76 eV # KIDA
+
+227,C+,O2,,CO+,O,,,NONE,NONE,3.48e-10
+# 227 energy = 3.36 eV # KIDA
+
+228,C+,H2,,CH+,H,,,NONE,NONE,7.40e-10 * exp(-4538.0/TgasNI)
+# 228 energy = -0.28 eV # KIDA
+
+229,H+,CO2,,HCO+,O,,,NONE,NONE,3.8e-9
+# 229 energy = 0.71 eV # KIDA
+
+230,H+,O2,,O2+,H,,,NONE,NONE,1.17e-9
+# 230 energy = 1.61 eV # KIDA
+
+231,Ar+,CO2,,Ar,CO2+,,,0.1,700.0,5.0e-10
+# 231 energy = -13.67 eV
+
+232,Ar+,CO2,,Ar,CO2+,,,700.0,10000000000.0,5.0e-10 * (700.0/TgasNI)
+# 232 energy = -13.67 eV
+
+233,Ar+,O2,,Ar,O2+,,,0.1,900.0,4.0e-11 * (300.0/TgasNI)**(0.78)
+# 233 energy = -11.96 eV
+
+234,Ar+,O2,,Ar,O2+,,,900.0,100000000.0,2.08e-11 * (TgasNI/900.0)**(1.65)
+# 234 energy = -11.96 eV
+
+235,Ar+,CO,,Ar,CO+,,,0.1,900.0,3.7e-11 * (300.0/TgasNI)**(0.43)
+# 235 energy = -9.66 eV
+
+236,Ar+,CO,,Ar,CO+,,,900.0,100000000.0,2.3e-11 * (TgasNI/900.0)
+# 236 energy = -9.66 eV
+
+237,Ar+,N2,,Ar,N2+,,,NONE,NONE,1.1e-11 * (TgasNI/300.0)**(1.13)
+# 237 energy = -15.53 eV
+
+238,Ar+,NO,,Ar,NO+,,,NONE,NONE,3.1e-10
+# 238 energy = -9.20 eV
+
+239,Ar+,H2,,Ar,H2+,,,NONE,NONE,1.78e-11
+# 239 energy = -15.31 eV
+
+240,Ar+,H2,,ArH+,H,,,NONE,NONE,8.72e-10
+# 240 energy = -12.45 eV
+
+241,He+,CO,,C+,O,He,,NONE,NONE,1.6e-9
+# 241 energy = 2.25 eV # KIDA
+
+242,He+,CO2,,C+,O2,He,,NONE,NONE,2.0e-11
+# 242 energy = 1.87 eV # KIDA
+
+243,He+,CO2,,CO+,O,He,,NONE,NONE,7.8e-10
+# 243 energy = 5.18 eV # KIDA
+
+244,He+,CO2,,O+,CO,He,,NONE,NONE,1.4e-10
+# 244 energy = 5.46 eV # KIDA
+
+245,He+,CO2,,CO2+,He,,,NONE,NONE,5.0e-11
+# 245 energy = 10.87 eV # KIDA
+
+246,He+,O2,,O+_2d,O,He,,NONE,NONE,2.37e-10
+# 246 energy = 0.0 eV
+
+247,He+,O2,,O+,O,He,,NONE,NONE,2.39e-11
+# 247 energy = 5.92 eV # KIDA
+
+248,He+,O2,,O2+,He,,,NONE,NONE,9.2e-12
+# 248 energy = 12.57 eV # KIDA
+
+249,He+,O2,,O+_2p,O,He,,NONE,NONE,6.04e-10
+# 249 energy = 0.0 eV
+
+250,He+,O2,,O+,O_1d,He,,NONE,NONE,4.6e-11
+# 250 energy = 0.0 eV
+
+251,He+,O,,O+,He,,,NONE,NONE,1.0e-13
+# 251 energy = 10.97 eV
+
+252,He+,N2,,N+,N,He,,NONE,NONE,7.8e-10
+# 252 energy = 0.36 eV # KIDA
+
+253,He+,N2,,N2+,He,,,NONE,NONE,5.2e-10
+# 253 energy = 9.07 eV # KIDA
+
+254,He+,NO,,N+,O,He,,NONE,NONE,1.35e-9
+# 254 energy = 3.63 eV # KIDA
+
+255,He+,NO,,O+,N,He,,NONE,NONE,1.0e-10
+# 255 energy = 4.54 eV # KIDA
+
+256,N,CO2,,NO,CO,,,NONE,NONE,1.7e-16
+# 256 energy = 1.06 eV # KIDA
+
+257,N_2d,CO,,N,CO,,,NONE,NONE,1.9e-12
+# 257 energy = 0.0 eV
+
+258,N_2d,H2,,NH,H,,,NONE,NONE,4.2e-11 * exp(-880.0/Tneut)
+# 258 energy = 0.0 eV
+
+259,N_2p,CO2,,N_2d,CO2,,,NONE,NONE,2.0e-15
+# 259 energy = 0.0 eV
+
+260,N_2p,CO,,N_2d,CO,,,NONE,NONE,6.0e-15
+# 260 energy = 0.0 eV
+
+261,N_2p,O2,,NO,O,,,NONE,NONE,1.03e-12 * exp(-60.0/Tneut)
+# 261 energy = 0.0 eV
+
+262,N_2p,O2,,NO,O_1d,,,NONE,NONE,1.03e-12 * exp(-60.0/Tneut)
+# 262 energy = 0.0 eV
+
+263,N_2p,O2,,NO,O_1s,,,NONE,NONE,1.03e-12 * exp(-60.0/Tneut)
+# 263 energy = 0.0 eV
+
+264,N_2p,O,,N_2d,O,,,NONE,NONE,1.7e-11
+# 264 energy = 0.0 eV
+
+265,N_2p,NO,,N_2d,NO,,,NONE,NONE,2.9e-11
+# 265 energy = 0.0 eV
+
+266,N_2p,N2,,N_2d,N2,,,NONE,NONE,5.0e-17
+# 266 energy = 0.0 eV
+
+267,N_2p,N,,N_2d,N,,,NONE,NONE,6.2e-13
+# 267 energy = 0.0 eV
+
+268,N_2p,H2,,N_2d,H2,,,NONE,NONE,2.5e-13
+# 268 energy = 0.0 eV
+
+269,N_2p,e,,N,e,,,NONE,NONE,2.04e-10 * (TgasNE/300.0)**(0.85)
+# 269 energy = 0.0 eV
+
+270,N_2p,e,,N_2d,e,,,NONE,NONE,9.5e-9
+# 270 energy = 0.0 eV
+
+271,C,CO2,,CO,CO,,,NONE,NONE,7.62e-14 * (Tneut/300.0)**(0.5) * exp(-3480.0/Tneut)
+# 271 energy = 4.53 eV # KIDA
+
+
+272,C,NO,,CO,N,,,NONE,NONE,7.5e-11 * (Tneut/300.0)**(-0.16)
+# 272 energy = 4.67 eV # KIDA
+
+273,C,O2,,CO,O,,,NONE,NONE,4.9e-11 * (Tneut/300.0)**(-0.32)
+# 273 energy = 6.05 eV # KIDA
+
+274,O_1d,CO,,O,CO,,,NONE,NONE,3.6e-11
+# 274 energy = 0.0 eV
+
+275,O_1d,CO,,O,CO,,,NONE,NONE,3.6e-11
+# 275 energy = 0.0 eV
+
+276,O_1d,e,,O,e,,,NONE,NONE,2.87e-10 * (TgasNE/300.0)**0.91
+# 276 energy = 0.0 eV
+
+277,O_1s,CO2,,O_1d,CO2,,,NONE,NONE,2.02e-11 * exp(-1327.0/Tneut)
+# 277 energy = 0.0 eV
+
+278,O_1s,CO2,,O,CO2,,,NONE,NONE,1.19e-11 * exp(-1327.0/Tneut)
+# 278 energy = 0.0 eV
+
+279,O_1s,O2,,O_1d,O2,,,NONE,NONE,1.36e-12 * exp(-815.0/Tneut)
+# 279 energy = 0.0 eV
+
+280,O_1s,O2,,O,O2,,,NONE,NONE,3.04e-12 * exp(-815.0/Tneut)
+# 280 energy = 0.0 eV
+
+281,O_1s,O,,O_1d,O,,,NONE,NONE,0.0
+# 281 energy = 0.0 eV
+
+282,O_1s,N2,,O_1d,N2,,,NONE,NONE,5.0e-17
+# 282 energy = 0.0 eV
+
+283,O_1s,CO,,O_1d,CO,,,NONE,NONE,7.4e-14 * exp(-961.0/Tneut)
+# 283 energy = 0.0 eV
+
+284,O_1s,H2,,O_1d,H2,,,NONE,NONE,2.86e-16
+# 284 energy = 0.0 eV
+
+285,O_1s,e,,O_1d,e,,,NONE,NONE,8.5e-9
+# 285 energy = 0.0 eV
+
+286,O_1s,e,,O,e,,,NONE,NONE,1.56e-10 * (TgasNE/300.0)**0.94
+# 286 energy = 0.0 eV
+
+287,H,H,CO2,H2,CO2,,,NONE,NONE,1.2e-32 * (Tneut/300.0)**(-1.3)
+# 287 energy = 4.52 eV
+
+288,CO+,e,,C,O,,,NONE,NONE,1.8e-7 * (300.0/TgasIE)**(0.55)
+# 288 energy = -1.38 eV
+
+289,CO+,e,,C,O_1d,,,NONE,NONE,0.25e-7 * (300.0/TgasIE)**(0.55)
+# 289 energy = 0.0 eV
+
+290,O2+,e,,O_1d,O_1s,,,0.1,1200.0,9.75e-9 * (300.0/TgasIE)**(0.70)
+# 290 energy = 0.0 eV
+
+291,O2+,e,,O_1d,O_1s,,,1200.0,1000000000.0,3.69e-9 * (1200.0/TgasIE)**(0.56)
+# 291 energy = 0.0 eV
+
+292,N2+,e,,N_2d,N_2d,,,NONE,NONE,1.01e-7 * (300.0/TgasIE)**(0.39)
+# 292 energy = 0.0 eV
+
+293,N2+,e,,N,N_2p,,,NONE,NONE,1.76e-8 * (300.0/TgasIE)**(0.39)
+# 293 energy = 0.0 eV
+
+# DO NOT KNOW WHY THIS REACTION IS REPEATED HERE
+# FROM 294
+#296,N2+,e,,N_2d,N_2d,,,NONE,NONE,1.01e-7 * (300.0/TgasIE)**(0.39)
+294,N2+,,,N2+,,,,NONE,NONE,0.0
+# 294 energy = 0.0 eV
+
+
+
+295,N_2p,,,N_2d,,,,NONE,NONE,7.9e-2
+# 295 energy = 0.0 eV
+
+296,N_2p,,,N,,,,NONE,NONE,5.0e-3
+# 296 energy = 0.0 eV
+
+297,O_1s,,,O_1d,,,,NONE,NONE,1.06
+# 297 energy = 0.0 eV
+
+298,O_1s,,,O,,,,NONE,NONE,4.5e-2
+# 298 energy = 0.0 eV
+
+
+#-------------------------------------------------------------------------------------
+# some more photoreactions
+
+@photo_start
+@format:idx,R,P,P,P,Tmin,Tmax,rate
+
+299,He,He+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/He_to_Hej_E.dat
+# 299 bonding_energy = 23.957 eV
+
+300,Ar,Ar+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/Ar_to_Arj_E.dat
+# 300 bonding_energy = 15.030 eV
+
+301,O_1s,O+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/O1S_to_Oj_E.dat
+# 301 bonding_energy = 14.101 eV
+
+302,O2,O_1s,O_1s,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/O2_to_O1S_O1S.dat
+# 302 bonding_energy = 13.500 eV
+
+303,C,C+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/C_to_Cj_E.dat
+# 303 bonding_energy = 11.448 eV
+
+@photo_stop
+
+
+#-------------------------------------------------------------
+# EXTRA REACTIONS FROM FOX (2015)
+
+@format:idx,R,R,R,P,P,P,P,Tmin,Tmax,rate
+
+304,CO2+,H2,,OCOH+,H,,,NONE,NONE,9.5e-10 * (TgasNI/300.0)**(-0.15)
+# 304 energy = 1.26 eV
+
+305,H+,He,,HeH+,,,,NONE,NONE,8.0e-20 * (TgasNI/300.0)**(-0.24) * exp(-TgasNI/4000.0)
+# 305 energy = 1.88 eV
+
+306,He+,H,,HeH+,,,,NONE,NONE,4.16e-16 * (TgasNI/300.0)**(-0.37) * exp(-TgasNI/4000.0)
+# 306 energy = 12.87 eV
+
+# DO NOT KNOW WHY THIS REACTION IS REPEATED HERE
+# FROM 307
+#309,H+,He,,HeH+,,,,NONE,NONE,8.0e-20 * (TgasNI/300.0)**(-0.24) * exp(-TgasNI/4000.0)
+307,H+,,,H+,,,,NONE,NONE,0.0
+# 307 energy = 0.0 eV
+
+
+
+308,He+,H2,,H+,He,H,,NONE,NONE,8.3e-14
+# 308 energy = 6.57 eV # KIDA
+
+309,He+,H2,,H2+,He,,,NONE,NONE,1.7e-14
+# 309 energy = 9.16 eV
+
+310,N2H+,CO,,HCO+,N2,,,NONE,NONE,8.8e-10
+# 310 energy = 1.11 eV # KIDA
+
+311,N2H+,CO2,,OCOH+,N2,,,NONE,NONE,1.07e-9
+# 311 energy = 0.50 eV
+
+312,N2H+,NO,,HNO+,N2,,,NONE,NONE,3.4e-10
+# 312 energy = 0.46 eV # KIDA
+
+313,N2H+,O,,OH+,N2,,,NONE,NONE,2.4e-10 * exp(-589.0/TgasNI)
+# 313 energy = 0.016 eV # KIDA
+
+314,N2H+,C,,CH+,N2,,,NONE,NONE,1.1e-9
+# 314 energy = 1.47 eV # KIDA
+
+315,OH+,CO,,HCO+,O,,,NONE,NONE,8.4e-10
+# 315 energy = 1.19 eV # KIDA
+
+316,OH+,NO,,NO+,OH,,,NONE,NONE,3.59e-10
+# 316 energy = 3.82 eV # KIDA
+
+317,OH+,NO,,HNO+,O,,,NONE,NONE,6.11e-10
+# 317 energy = 0.53 eV # KIDA
+
+318,OH+,H2,,H2O+,H,,,NONE,NONE,9.7e-10
+# 318 energy = 1.08 eV # KIDA
+
+319,OH+,N2,,N2H+,O,,,NONE,NONE,2.4e-10
+# 319 energy = 0.1 eV # KIDA
+
+320,OH+,CO2,,OCOH+,O,,,NONE,NONE,1.35e-9
+# 320 energy = 0.6 eV # KIDA
+
+321,OH+,O2,,O2+,OH,,,NONE,NONE,3.8e-10
+# 321 energy = 1.01 eV # KIDA
+
+322,OH+,C,,CH+,O,,,NONE,NONE,1.2e-9
+# 322 energy = 1.54 eV # KIDA
+
+323,OH+,N,,NO+,H,,,NONE,NONE,8.9e-10
+# 323 energy = 5.92 eV # KIDA
+
+324,OH+,O,,O2+,H,,,NONE,NONE,7.1e-10
+# 324 energy = 1.73 eV # KIDA
+
+325,HNO+,CO,,HCO+,NO,,,NONE,NONE,8.6e-10
+# 325 energy = 0.69 eV # KIDA
+
+326,HNO+,CO2,,OCOH+,NO,,,NONE,NONE,9.4e-10
+# 326 energy = 0.08 eV
+
+
+
+327,HNO+,C,,CH+,NO,,,NONE,NONE,1.0e-9
+# 327 energy = 1.05 eV # KIDA
+
+328,HNO+,N2,,N2H+,NO,,,NONE,NONE,3.4e-10 * exp(-4900.0/TgasNI)
+# 328 energy = -0.42 eV
+
+329,HNO+,O,,NO2+,H,,,NONE,NONE,1.0e-12
+# 329 energy = 1.73 eV # KIDA
+
+# why is this reaction here twice???
+# replace with zero null reactio
+#333,HNO+,O,,NO2+,H,,,NONE,NONE,1.0e-12
+330,H2+,,,H2+,,,,NONE,NONE,0.0
+# 330 energy = 0.0 eV
+
+
+331,H2+,CO2,,OCOH+,H,,,NONE,NONE,2.35e-9
+# 331 energy = 2.94 eV # KIDA
+
+332,H2+,Ar,,ArH+,H,,,NONE,NONE,2.3e-9
+# 332 energy = 2.85 eV
+
+333,H2+,N2,,N2H+,H,,,NONE,NONE,2.3e-9
+# 333 energy = 2.44 eV # KIDA
+
+334,H2+,CO,,HCO+,H,,,NONE,NONE,7.65e-10
+# 334 energy = 3.53 eV # KIDA
+
+335,H2+,CO,,CO+,H2,,,NONE,NONE,6.44e-10
+# 335 energy = 1.51 eV # KIDA
+
+336,H2+,O2,,HO2+,H,,,NONE,NONE,1.53e-9
+# 336 energy = 1.74 eV # KIDA
+
+337,H2+,O2,,O2+,H2,,,NONE,NONE,4.94e-10
+# 337 energy = 3.42 eV # KIDA
+
+338,H2+,C,,CH+,H,,,NONE,NONE,2.4e-9
+# 338 energy = 3.89 eV # KIDA
+
+339,H2+,N,,NH+,H,,,NONE,NONE,1.9e-9
+# 339 energy = 0.96 eV # KIDA
+
+340,H2+,NO,,NO+,H2,,,NONE,NONE,1.1e-9
+# 340 energy = 6.23 eV # KIDA
+
+341,H3+,N2,,N2H+,H2,,,NONE,NONE,1.63e-9
+# 341 energy = 0.73 eV # KIDA
+
+342,H3+,O,,OH+,H2,,,NONE,NONE,7.98e-10 * (TgasNI/300.0)**(-0.156) * exp(-1.41/TgasNI)
+# 342 energy = 0.72 eV # KIDA
+
+343,H3+,O,,H2O+,H,,,NONE,NONE,3.42e-10 * (TgasNI/300.0)**(-0.156) * exp(-1.41/TgasNI)
+# 343 energy = 1.74 eV # KIDA
+
+344,H3+,O2,,HO2+,H2,,,NONE,NONE,6.5e-10
+# 344 energy = 0.024 eV # KIDA
+
+345,H3+,CO,,HCO+,H2,,,NONE,NONE,1.36e-9 * (TgasNI/300.0)**(-0.142) * exp(3.41/TgasNI)
+# 345 energy = 1.81 eV # KIDA
+
+
+346,H3+,CO2,,OCOH+,H2,,,NONE,NONE,2.5e-9
+# 346 energy = 1.23 eV # KIDA
+
+347,H3+,NO,,HNO+,H2,,,NONE,NONE,1.94e-9
+# 347 energy = 1.16 eV # KIDA
+
+348,H3+,C,,CH+,H2,,,NONE,NONE,2.0e-9
+# 348 energy = 2.17 eV # KIDA
+
+349,ArH+,H2,,H3+,Ar,,,NONE,NONE,6.3e-10
+# 349 energy = -1.16 eV
+
+350,ArH+,N2,,N2H+,Ar,,,NONE,NONE,8.0e-10
+# 350 energy = -0.45 eV
+
+351,ArH+,O2,,HO2+,Ar,,,NONE,NONE,5.05e-10
+# 351 energy = -1.17 eV
+
+352,ArH+,CO,,HCO+,Ar,,,NONE,NONE,1.25e-9
+# 352 energy = 0.54 eV
+
+353,ArH+,CO2,,OCOH+,Ar,,,NONE,NONE,1.1e-9
+# 353 energy = 0.04 eV
+
+354,ArH+,O,,OH+,Ar,,,NONE,NONE,5.9e-10
+# 354 energy = -0.51 eV
+
+355,ArH+,C,,CH+,Ar,,,NONE,NONE,1.02e-9
+# 355 energy = 0.88 eV
+
+356,OCOH+,O,,HCO+,O2,,,NONE,NONE,5.8e-10
+# 356 energy = 0.27 eV # KIDA
+
+357,OCOH+,C,,CH+,CO2,,,NONE,NONE,1.0e-9
+# 357 energy = 0.97 eV # KIDA
+
+358,OCOH+,CO,,HCO+,CO2,,,NONE,NONE,7.8e-10
+# 358 energy = 0.62 eV # KIDA
+
+359,HO2+,CO,,HCO+,O2,,,NONE,NONE,8.4e-10
+# 359 energy = 1.82 eV # KIDA
+
+360,HO2+,CO2,,OCOH+,O2,,,NONE,NONE,1.1e-9
+# 360 energy = 1.24 eV # KIDA
+
+361,HO2+,NO,,HNO+,O2,,,NONE,NONE,7.5e-10
+# 361 energy = 1.17 eV # KIDA
+
+362,HO2+,N2,,N2H+,O2,,,NONE,NONE,8.0e-10
+# 362 energy = 0.74 eV # KIDA
+
+363,HO2+,O,,OH+,O2,,,NONE,NONE,6.2e-10
+# 363 energy = 0.72 eV # KIDA
+
+364,HO2+,N,,NO2+,H,,,NONE,NONE,1.0e-12
+# 364 energy = 4.23 eV # KIDA
+
+365,HO2+,C,,CH+,O2,,,NONE,NONE,1.0e-9
+# 365 energy = 2.18 eV # KIDA
+
+366,HO2+,H2,,H3+,O2,,,NONE,NONE,3.3e-10
+# 366 energy = 0.036 eV # KIDA
+
+367,HCO+,C,,CH+,CO,,,NONE,NONE,1.1e-9
+# 367 energy = 0.46 eV # KIDA
+
+368,CH+,H2,,CH2+,H,,,NONE,NONE,1.2e-9
+# 368 energy = 0.22 eV # KIDA
+
+
+369,CH+,O,,CO+,H,,,NONE,NONE,3.5e-10
+# 369 energy = 4.41 eV # KIDA
+
+370,CH+,H,,C+,H2,,,NONE,NONE,7.84e-10 * (TgasNI/300.0)**(-0.22)
+# 370 energy = 0.46 eV # KIDA
+
+371,CH+,CO2,,HCO+,CO,,,NONE,NONE,1.6e-9
+# 371 energy = 5.42 eV # KIDA
+
+372,CH+,O2,,HCO+,O,,,NONE,NONE,9.2e-10
+# 372 energy = 5.76 eV # KIDA
+
+# why is this reaction here twice?
+# replace with null reaction
+#378,CH+,O2,,HCO+,O,,,NONE,NONE,9.2e-10
+373,CH+,,,CH+,,,,NONE,NONE,0.0
+# 373 energy = 0.0 eV
+
+374,HCO+,e,,H,CO,,,0.1,300.0,2.0e-7 * (TgasIE/300.0)**(-1.25)
+# 374 energy = 7.52 eV
+375,HCO+,e,,H,CO,,,300.0,1000000000.0,2.0e-7 * (TgasIE/300.0)**(-1.0)
+# 375 energy = 7.52 eV
+
+376,OCOH+,e,,H,O,CO,,NONE,NONE,2.38e-7 * (TgasIE/300.0)**(-0.5)
+# 376 energy = 2.50 eV
+
+377,OCOH+,e,,H,CO2,,,NONE,NONE,1.75e-8 * (TgasIE/300.0)**(-0.5)
+# 377 energy = 8.01 eV
+
+378,OCOH+,e,,OH,CO,,,NONE,NONE,9.45e-8 * (TgasIE/300.0)**(-0.5)
+# 378 energy = 6.95 eV
+
+379,HNO+,e,,NO,H,,,NONE,NONE,3.0e-7 * (TgasIE/300.0)**(-0.5)
+# 379 energy = 8.09 eV
+
+380,N2H+,e,,N2,H,,,NONE,NONE,2.325e-7 * (TgasIE/300.0)**(-0.84)
+# 380 energy = 8.51 eV
+
+381,N2H+,e,,NH,N,,,NONE,NONE,1.755e-8 * (TgasIE/300.0)**(-0.84)
+# 381 energy = 2.15 eV
+
+382,OH+,e,,O_1d,H,,,NONE,NONE,3.94e-8 * (TgasIE/300.0)**(-1.28)
+# 382 energy = 0.0 eV
+
+383,HO2+,e,,OH,O,,,NONE,NONE,1.8e-7 * (TgasIE/300.0)**(-0.5)
+# 383 energy = 8.51 eV
+
+384,HO2+,e,,H,O2,,,NONE,NONE,6.0e-8 * (TgasIE/300.0)**(-0.5)
+# 384 energy = 9.22 eV
+
+385,HO2+,e,,H,O,O,,NONE,NONE,6.0e-8 * (TgasIE/300.0)**(-0.5)
+# 385 energy = 4.06 eV
+
+386,ArH+,e,,Ar,H,,,NONE,NONE,1.0e-9 * (TgasIE/300.0)**(-0.5)
+# 386 energy = 8.06 eV
+
+
+#-----------------------------------------------------------
+# the following reactions are from Yelle (2004)
+
+387,He+,H2,,HeH+,H,,,NONE,NONE,4.2e-13
+# 387 energy = 8.35 eV
+
+388,He+,H2,,H+,H,He,,NONE,NONE,8.8e-14
+# 388 energy = 6.57 eV # KIDA
+
+389,HeH+,H2,,H3+,He,,,NONE,NONE,1.5e-9
+# 389 energy = 2.56 eV # KIDA
+
+390,HeH+,H,,H2+,He,,,NONE,NONE,9.1e-10
+# 390 energy = 0.91 eV # KIDA
+
+391,He+,e,,He,,,,NONE,NONE,4.6e-12 * (300.0/TgasIE)**(0.64)
+# 391 energy = 24.59 eV
+
+392,HeH+,e,,He,H,,,NONE,NONE,1.0e-8 * (300.0/TgasIE)**(0.6)
+# 392 energy = 11.71 eV
+
+#-----------------------------------------------------------
+# the following reactions are from Fox et al. (2015)
+
+# rate from KIDA
+393,H2O+,H2,,H3O+,H,,,NONE,NONE,6.1e-10
+# 393 energy = 1.67 eV # KIDA
+
+# rate from KIDA, not sure if should use Telec for temperature
+394,H3O+,e,,H,H2O,,,NONE,NONE,1.1e-7 * (TgasIE/300.0)**(-0.5)
+# 394 energy = 6.46 eV
+
+# rate from KIDA, not sure if should use Telec for temperature
+395,H3O+,e,,OH,H2,,,NONE,NONE,6.0e-8 * (TgasIE/300.0)**(-0.5)
+# 395 energy = 5.82 eV
+
+# rate from KIDA, not sure if should use Telec for temperature
+396,H3O+,e,,OH,H,H,,NONE,NONE,2.6e-7 * (TgasIE/300.0)**(-0.5)
+# 396 energy = 1.30 eV
+
+# rate from KIDA, not sure if should use Telec for temperature
+397,H3O+,e,,H2,O,H,,NONE,NONE,5.6e-9 * (TgasIE/300.0)**(-0.5)
+# 397 energy = 1.37 eV
+
+# rate from KIDA
+398,H2O+,C,,CH+,OH,,,NONE,NONE,1.1e-9
+# 398 energy = 0.43 eV # KIDA
+
+# rate from KIDA
+399,H2O+,CO,,HCO+,OH,,,NONE,NONE,5.0e-10
+# 399 energy = 0.07 eV # KIDA
+
+# rate from KIDA
+400,H2O+,H2O,,H3O+,OH,,,NONE,NONE,2.1e-9
+# 400 energy = 1.02 eV # KIDA
+
+# rate from KIDA
+401,He+,H2O,,He,H2O+,,,NONE,NONE,9.54e-10 * ( 0.62 + 2.579 * (300.0/TgasNI)**(0.5) )
+# 401 energy = 12.00 eV # KIDA
+
+# rate from Rimmer network
+402,Ar+,H2O,,Ar,H2O+,,,NONE,NONE,1.5e-10
+# 402 energy = -12.50 eV
+
+# rate from KIDA
+403,N2+,H2O,,N2,H2O+,,,NONE,NONE,2.2e-9
+# 403 energy = 3.0 eV # KIDA
+
+# rate from KIDA
+404,H2+,H2O,,H2,H2O+,,,NONE,NONE,3.9e-9
+# 404 energy = 2.84 eV # KIDA
+
+# rate from KIDA
+405,N+,H2O,,N,H2O+,,,NONE,NONE,2.6e-9
+# 405 energy = 1.98 eV # KIDA
+
+# rate from KIDA
+406,CO+,H2O,,CO,H2O+,,,NONE,NONE,1.7e-9
+# 406 energy = 1.46 eV # KIDA
+
+# rate from KIDA
+407,CO2+,H2O,,CO2,H2O+,,,NONE,NONE,5.6648e-10 * ( 0.62 + 2.579 * (300.0/TgasNI)**(0.5) )
+# 407 energy = 1.2 eV # KIDA
+
+# rate from KIDA
+408,O+,H2O,,O,H2O+,,,NONE,NONE,9.54e-10 * ( 0.62 + 2.579 * (300.0/TgasNI)**(0.5) )
+# 408 energy = 1.05 eV # KIDA
+
+# rate from KIDA
+409,H+,H2O,,H,H2O+,,,NONE,NONE,7.3e-9 * (TgasNI/300.0)**(-0.5)
+# 409 energy = 1.03 eV # KIDA
+
+# rate from KIDA replaced by rate from Gacia Mnuoz (2007)
+410,OH+,H2O,,OH,H2O+,,,NONE,NONE,1.59e-9
+# 410 energy = 0.43 eV # KIDA
+
+# the following are extra CE reactions involving H2O not in Fox paper but I found on KIDA
+
+411,NH+,H2O,,NH,H2O+,,,NONE,NONE,1.05e-9
+# 411 energy = 0.90 eV # KIDA
+
+412,C+,H2O,,C,H2O+,,,NONE,NONE,2.4e-10
+# 412 energy = -1.26 eV # KIDA
+
+#-----------------------------------------------------------
+# the following are additional reactions from Verronen et al. (2002)
+
+413,O,NO2,,NO,O2,,,NONE,NONE,6.5e-12 * exp(120.0/Tneut)
+# 413 energy = 2.0 eV # KIDA
+
+414,O,NO3,,NO2,O2,,,NONE,NONE,1.0e-11
+# 414 energy = 2.97 eV # KIDA
+
+# this one has a catalyst
+415,NO,O,,NO2,,,,NONE,NONE,9.0e-32 * (300.0/Tneut)**(1.5) * total_density
+# 415 energy = 3.17 eV
+
+416,NO,O3,,NO2,O2,,,NONE,NONE,2.0e-12 * exp(-1400.0/Tneut)
+# 416 energy = 2.03 eV # KIDA
+
+# this one has a catalyst
+417,NO,OH,,HNO2,,,,NONE,NONE,7.0e-31 * (300.0/Tneut)**(2.6) * total_density
+# 417 energy = 2.13 eV
+
+418,NO,HO2,,NO2,OH,,,NONE,NONE,3.7e-12 * exp(250.0/Tneut)
+# 418 energy = 0.31 eV # KIDA
+
+419,NO,NO3,,NO2,NO2,,,NONE,NONE,1.5e-11 * exp(170.0/Tneut)
+# 419 energy = 1.34 eV # KIDA
+
+420,N,NO2,,N2O,O,,,NONE,NONE,3.0e-12
+# 420 energy = 1.81 eV # KIDA
+
+# why is this one here twice?
+# replace by null reaction
+#427,N,NO2,,N2O,O,,,NONE,NONE,3.0e-12
+421,N2O,,,N2O,,,,NONE,NONE,0.0
+# 421 energy = 0.0 eV
+
+# this one has a catalyst
+422,OH,OH,,H2O2,,,,NONE,NONE,6.9e-31 * (300.0/Tneut)**(0.8) * total_density
+# 422 energy = 2.18 eV
+
+# this one has a catalyst
+423,OH,NO2,,HNO3,,,,NONE,NONE,2.6e-30 * (300.0/Tneut)**(3.2) * total_density
+# 423 energy = 2.13 eV
+
+424,OH,NO3,,NO2,HO2,,,NONE,NONE,2.2e-11
+# 424 energy = 0.62 eV # KIDA
+
+425,OH,HNO2,,NO2,H2O,,,NONE,NONE,1.8e-11 * exp(-390.0/Tneut)
+# 425 energy = 1.75 eV
+
+426,OH,HNO3,,NO3,H2O,,,NONE,NONE,7.2e-15 * exp(785.0/Tneut)
+# 426 energy = 0.73 eV
+
+427,NO2,O3,,NO3,O2,,,NONE,NONE,1.2e-13 * exp(-2450.0/Tneut)
+# 427 energy = 1.0 eV # KIDA
+
+428,Cl,O3,,ClO,O2,,,NONE,NONE,2.9e-11 * exp(-260.0/Tneut)
+# 428 energy = 1.68 eV # KIDA
+
+429,ClO,O,,Cl,O2,,,NONE,NONE,3.0e-11 * exp(70.0/Tneut)
+# 429 energy = 2.39 eV # KIDA
+
+430,ClO,NO,,NO2,Cl,,,NONE,NONE,6.4e-12 * exp(290.0/Tneut)
+# 430 energy = 0.37 eV # KIDA
+
+431,O_1d,N2,,N2O,,,,NONE,NONE,3.5e-37 * (300.0/Tneut)**(0.6)
+# 431 energy = 0.0 eV
+
+432,O_1d,N2,,N2O,,,,NONE,NONE,3.5e-37 * (300.0/Tneut)**(0.6)
+# 432 energy = 0.0 eV
+
+433,O_1d,N2O,,N2,O2,,,NONE,NONE,4.9e-11
+# 433 energy = 0.0 eV
+
+434,O_1d,N2O,,NO,NO,,,NONE,NONE,6.7e-11
+# 434 energy = 0.0 eV
+
+435,NO3,NO3,,NO2,NO2,O2,,NONE,NONE,8.5e-13 * exp(-2450.0/Tneut)
+# 435 energy = 0.39 eV # KIDA
+
+436,NO2,H,,NO,OH,,,NONE,NONE,4.0e-10 * exp(-340.0/Tneut)
+# 436 energy = 1.20 eV # KIDA
+
+#-----------------------------------------------------------
+# a few more photoreactions from PHIDRATES
+
+@photo_start
+@format:idx,R,P,P,P,Tmin,Tmax,rate
+
+# The following two photodissociation reactions do not actually produce
+# ground state N2, but the excited state N2(1Phi). We just assume here
+# that this N2 is quickly turned into ground state N2.
+
+437,N2O,N2,O_1s,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/N2O_to_N21Phi_O1S.dat
+# 437 bonding_energy = 5.870 eV
+
+438,N2O,N2,O_1d,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/N2O_to_N21Phi_O1D.dat
+# 438 bonding_energy = 3.639 eV
+
+439,NO2,NO2+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/NO2_to_NO2j_E.dat
+# 439 bonding_energy = 9.687 eV
+
+440,NO2,NO,O_1d,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/NO2_to_NOX2Pi_O1D.dat
+# 440 bonding_energy = 5.100 eV
+
+441,NO2,NO,O,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/NO2_to_NOX2Pi_O.dat
+# 441 bonding_energy = 3.117 eV
+
+442,NO3,NO2,O,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/NO3_to_NO2_O.dat
+# 442 bonding_energy = 2.121 eV
+
+443,NO3,NO,O2,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/NO3_to_NO_O2.dat
+# 443 bonding_energy = 0.138 eV
+
+444,HNO3,OH,NO2,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/HNO3_to_OH_NO2.dat
+# 444 bonding_energy = 2.073 eV
+
+@photo_stop
+
+#-------------------------------------------------------------
+@format:idx,R,R,R,P,P,P,P,Tmin,Tmax,rate
+
+# this reaction I found on KIDA in order not to have NO2+ as a sink
+445,NO2+,e,,O,NO,,,NONE,NONE,3.0e-7 * (Telec/300.0)**(-0.5)
+# 445 energy = 6.40 eV
+
+
+# the following five reactions are from KIDA so as not to have CH2+ as a sink
+
+446,CH2+,O,,H,HCO+,,,NONE,NONE,7.5e-10
+# 446 energy = 6.27 eV # KIDA
+
+447,CH2+,O2,,OH,HCO+,,,NONE,NONE,9.1e-10
+# 447 energy = 5.55 eV # KIDA
+
+448,CH2+,H,,H2,CH+,,,NONE,NONE,1.2e-9 * exp(-2700.0/TgasNI)
+# 448 energy = -0.02 eV # KIDA
+
+449,CH2+,e,,C,H2,,,NONE,NONE,7.7e-8 * (TgasIE/300.0)**(-0.6)
+# 449 energy = 7.02 eV
+
+450,CH2+,e,,C,H,H,,NONE,NONE,4.0e-7 * (TgasIE/300.0)**(-0.6)
+# 450 energy = 2.50 eV
+
+#-------------------------------------------------------------
+# extra from Richards & Voglozin (2011)
+
+451,O+_2d,N2,,NO+,N,,,NONE,NONE,2.5e-11
+# 451 energy = 0.0 eV
+
+452,O+_2p,O2,,O2+,O,,,NONE,NONE,1.3e-10
+# 452 energy = 0.0 eV
+
+#-------------------------------------------------------------
+# extra from Garcia Munoz (2007)
+
+453,H2+,He,,HeH+,H,,,NONE,NONE,1.30e-10
+# 453 energy = -0.81 eV
+
+454,H2,H2,,H,H,H2,,NONE,NONE,1.25e-11 * exp(-52000.0/Tneut)
+# 454 energy = -2.24 eV # KIDA
+
+455,H2,H,,H,H,H,,NONE,NONE,1.0e-10 * exp(-52000.0/Tneut)
+# 455 energy = 0.02 eV # KIDA
+
+# this one is from KIDA and is not in Garcia Munoz (2007)
+456,H+,H2,,H,H,H+,,NONE,NONE,3.0e-11 * (TgasNI/300.0)**(0.5) * exp(-52000.0/TgasNI)
+# 456 energy = -2.15 eV # KIDA
+
+457,C+,e,,C,,,,NONE,NONE,1.43e-10 * TgasIE**(-0.6)
+# 457 energy = -5.82 eV
+
+458,H2O+,e,,O,H,H,,NONE,NONE,3.53e-6 * TgasIE**(-0.5)
+# 458 energy = 3.01 eV
+
+459,H2O+,e,,OH,H,,,NONE,NONE,1.09e-6 * TgasIE**(-0.5)
+# 459 energy = 7.46 eV
+
+460,H2O+,e,,O,H2,,,NONE,NONE,5.72e-7 * TgasIE**(-0.5)
+# 460 energy = 7.53 eV
+
+461,H2+,H2O,,H3O+,H,,,NONE,NONE,3.4e-9
+# 461 energy = 4.48 eV # KIDA
+
+462,H+,OH,,OH+,H,,,NONE,NONE,2.1e-9
+# 462 energy = 0.67 eV # KIDA
+
+463,H3+,H2O,,H3O+,H2,,,NONE,NONE,5.9e-9
+# 463 energy = 2.76 eV # KIDA
+
+464,H3+,OH,,H2O+,H2,,,NONE,NONE,1.3e-9
+# 464 energy = 1.78 eV # KIDA
+
+465,He+,H2O,,H+,OH,He,,NONE,NONE,2.04e-10
+# 465 energy = 5.92 eV # KIDA
+
+466,He+,H2O,,OH+,H,He,,NONE,NONE,2.86e-10
+# 466 energy = 6.5 eV # KIDA
+
+467,He+,OH,,O+,H,He,,NONE,NONE,1.1e-9
+# 467 energy = 6.62 eV # KIDA
+
+468,CO+,H2O,,HCO+,OH,,,NONE,NONE,8.84e-10
+# 468 energy = 1.47 eV # KIDA
+
+469,C+,H2O,,HCO+,H,,,NONE,NONE,9.0e-10
+# 469 energy = 3.72 eV # KIDA
+
+470,C+,OH,,CO+,H,,,NONE,NONE,7.7e-10
+# 470 energy = 4.06 eV # KIDA
+
+471,HCO+,H2O,,H3O+,CO,,,NONE,NONE,2.5e-9
+# 471 energy = 1.05 eV # KIDA
+
+472,HCO+,OH,,H2O+,CO,,,NONE,NONE,6.2e-10
+# 472 energy = 0.068 eV # KIDA
+
+# THIS IS A REPEAT OF REACTION 398
+#479,H2O+,H2,,H3O+,H,,,NONE,NONE,6.4e-10
+473,H2O+,,,H2O+,,,,NONE,NONE,0.0
+# 473 energy = 1.67 eV # KIDA
+
+# THIS IS A REPEAT OF REACTION 405
+#480,H2O+,H2O,,H3O+,OH,,,NONE,NONE,2.1e-9
+474,H2O+,,,H2O+,,,,NONE,NONE,0.0
+# 474 energy = 1.02 eV # KIDA
+
+475,H2O+,O,,O2+,H2,,,NONE,NONE,4.0e-11
+# 475 energy = 0.68 eV # KIDA
+
+476,H2O+,O2,,O2+,H2O,,,NONE,NONE,4.6e-10
+# 476 energy = 0.58 eV # KIDA
+
+477,H3O+,C,,HCO+,H2,,,NONE,NONE,1.0e-11
+# 477 energy = 5.10 eV # KIDA
+
+478,OH+,H2O,,H3O+,O,,,NONE,NONE,1.59e-9
+# 478 energy = 2.14 eV # KIDA
+
+479,O+,OH,,OH+,O,,,NONE,NONE,3.6e-10
+# 479 energy = 0.69 eV # KIDA
+
+480,O+,OH,,O2+,H,,,NONE,NONE,3.6e-10
+# 480 energy = 2.33 eV # KIDA
+
+# this reaction is repeated above (reaction 485)
+# make null reaction
+#487,O+,OH,,OH+,O,,,NONE,NONE,3.6e-10
+481,O+,,,O+,,,,NONE,NONE,0.0
+# 481 energy = 0.0 eV
+
+482,H2O,H2,,H,OH,H2,,NONE,NONE,5.8e-9 * exp(-52900/Tneut)
+# 482 energy = -5.15 eV
+
+# rate from KIDA
+483,O,H2O,,OH,OH,,,NONE,NONE,1.85e-11 * (Tneut/300.0)**(0.95) * exp(-52900/Tneut)
+# 483 energy = -0.31 eV # KIDA
+
+# THIS IS A REPEAT OF 385
+#490,N2H+,e,,N2,H,,,NONE,NONE,2.88e-5 * TgasIE**(-0.9)
+484,N2H+,,,N2H+,,,,NONE,NONE,0.0
+# 484 energy = 0.0 eV
+
+485,NH+,e,,N,H,,,NONE,NONE,7.45e-7 * TgasIE**(-0.5)
+# 485 energy = 10.05 eV
+
+486,NH2+,e,,N,H,H,,NONE,NONE,1.67e-5 * TgasIE**(-0.8)
+# 486 energy = 3.69 eV
+
+487,NH2+,e,,NH,H,,,NONE,NONE,8.65e-6 * TgasIE**(-0.8)
+# 487 energy = 7.13 eV
+
+488,N,H2,,NH,H,,,NONE,NONE,1.69e-9 * exp(-18095.0/Tneut)
+# 488 energy = -1.06 eV # KIDA
+
+489,NH,H2,,NH2,H,,,NONE,NONE,5.96e-11 * exp(-7782.0/Tneut)
+# 489 energy = -0.48 eV # KIDA
+
+490,NH,H,,N,H2,,,NONE,NONE,1.0e-12 * Tneut**(0.5) * exp(-2400.0/Tneut)
+# 490 energy = 1.10 eV # KIDA
+
+491,NH,H2+,,NH+,H2,,,NONE,NONE,7.6e-10
+# 491 energy = 2.01 eV # KIDA
+
+492,NH,H2+,,NH2+,H,,,NONE,NONE,7.6e-10
+# 492 energy = 3.84 eV # KIDA
+
+493,NH,H+,,NH+,H,,,NONE,NONE,2.1e-9
+# 493 energy = 0.21 eV # KIDA
+
+494,NH,H3+,,NH2+,H2,,,NONE,NONE,1.3e-9
+# 494 energy = 2.12 eV # KIDA
+
+495,NH,He+,,N+,He,H,,NONE,NONE,1.1e-9
+# 495 energy = 6.72 eV # KIDA
+
+496,NH2,H,,NH,H2,,,NONE,NONE,1.05e-10 * exp(-4450.0/Tneut)
+# 496 energy = 0.47 eV # KIDA
+
+497,NH2,H2+,,NH2+,H2,,,NONE,NONE,2.1e-9
+# 497 energy = 4.29 eV # KIDA
+
+498,NH2,H+,,NH2+,H,,,NONE,NONE,2.9e-9
+# 498 energy = 2.48 eV # KIDA
+
+499,NH2,He+,,N+,He,H2,,NONE,NONE,8.0e-10
+# 499 energy = 7.17 eV # KIDA
+
+500,NH2,He+,,NH+,He,H,,NONE,NONE,8.0e-10
+# 500 energy = 7.15 eV # KIDA
+
+501,N2+,H,,N2,H+,,,NONE,NONE,1.2e-10
+# 501 energy = 2.07 eV # KIDA
+
+502,NH+,H2,,N,H3+,,,NONE,NONE,2.25e-10
+# 502 energy = 0.88 eV # KIDA
+
+503,NH+,H2,,NH2+,H,,,NONE,NONE,1.28e-8
+# 503 energy = 1.9 eV # KIDA
+
+#-------------------------------------------------------------
+# the following are reactions caused by impacts with
+# photoelectrons a a a a
+
+@photoelectron_start
+@format:idx,R,P,P,P,Tmin,Tmax,rate
+
+504,N2,N2+,e,,NONE,NONE,PhotoelectronRates(1)
+# 504 energy = 0.0 eV
+
+505,N2,N+,N,e,NONE,NONE,PhotoelectronRates(2)
+# 505 energy = 0.0 eV
+
+506,He,He+,e,,NONE,NONE,PhotoelectronRates(3)
+# 506 energy = 0.0 eV
+
+507,O,O+,e,,NONE,NONE,PhotoelectronRates(4)
+# 507 energy = 0.0 eV
+
+508,O2,O2+,e,,NONE,NONE,PhotoelectronRates(5)
+# 508 energy = 0.0 eV
+
+509,CO2,CO2+,e,,NONE,NONE,PhotoelectronRates(6)
+# 509 energy = 0.0 eV
+
+510,CO,CO+,e,,NONE,NONE,PhotoelectronRates(7)
+# 510 energy = 0.0 eV
+
+@photoelectron_stop
+
+#-------------------------------------------------------------
+
+
+@photo_start
+@format:idx,R,P,P,P,Tmin,Tmax,rate
+
+# The following are CO photoreactions from PHIDRATES
+
+511,CO,CO+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CO_to_COj_E.dat
+# 511 bonding_energy = 14.0170 eV
+
+512,CO,C+,O,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CO_to_Cj_O_E.dat
+# 512 bonding_energy = 22.485 eV
+
+513,CO,O+,C,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CO_to_Oj_C_E.dat
+# 513 bonding_energy = 24.7870 eV
+
+514,CO,C,O,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CO_to_C_O.dat
+# 514 bonding_energy = 11.9490 eV
+
+# this reaction is a bit of a cheat
+# on PHIDRATES, the reaction is CO --> C(1D) + O(1D), but I assume here
+# that the C(1D) is instantly deexcited to make ground state C
+515,CO,C,O_1d,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CO_to_C1D_O1D.dat
+# 515 bonding_energy = 14.3670 eV
+
+@photo_stop
+
+#-------------------------------------------------------------
+
+# Here are some reactions coming from the Liang & Yung (2009) paper. The reason
+# to add these is to have Deuterium chemistry, but in this case I add all reactions
+# from their Table 1 that are not already in the network.
+# In some cases, they had Deuterium reactions that mirrored purely H reactions that
+# are already in the network above. In these cases, I used the rates from the
+# reactions in the network above instead of the rates in their paper.
+
+@photo_start
+@format:idx,R,P,P,P,Tmin,Tmax,rate
+
+# their reaction R22
+516,HCl,H,Cl,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/HCl_to_H_Cl.dat
+# 516 bonding_energy = 4.43 eV
+
+@photo_stop
+
+# their reaction R46
+517,H,O2,CO2,HO2,CO2,,,NONE,NONE,2.0e-31 * (Tneut/300.0)**(-1.6)
+# 517 energy = 2.24 eV
+
+# their reaction R64
+518,H,HCl,,H2,Cl,,,NONE,NONE,1.5e-11 * exp(-1750.0/Tneut)
+# 518 energy = 0.05 eV
+
+# their reaction R65
+519,OH,HCl,,Cl,H2O,,,NONE,NONE,2.6e-12 * exp(-350.0/Tneut)
+# 519 energy = 0.68 eV
+
+# their reaction R66
+520,O,HCl,,OH,Cl,,,NONE,NONE,1.0e-11 * exp(-3300.0/Tneut)
+# 520 energy = -0.02 eV
+
+# their reaction R67
+521,Cl,H2,,HCl,H,,,NONE,NONE,3.7e-11 * exp(-2300.0/Tneut)
+# 521 energy = -0.05 eV
+
+# their reaction R67
+522,Cl,H2,,HCl,H,,,NONE,NONE,3.7e-11 * exp(-2300.0/Tneut)
+# 522 energy = -0.05 eV
+
+# their reaction R68 (rate coefficient reasonable???)
+523,Cl,OH,,HCl,O,,,NONE,NONE,1.2 * exp(-510.0/Tneut)
+# 523 energy = 0.02 eV
+
+# their reaction R70
+524,Cl,HO2,,HCl,O2,,,NONE,NONE,1.8e-11 * exp(170.0/Tneut)
+# 524 energy = 2.23 eV
+
+# their reaction R75
+525,ClO,OH,,HO2,Cl,,,NONE,NONE,1.1e-11 * exp(120.0/Tneut)
+# 525 energy = 0.16 eV
+
+# their reaction R78
+526,Cl,H,,HCl,,,,NONE,NONE,1.0e-32 * total_density
+# 526 energy = 4.47 eV
+
+# their reaction R86
+527,ClCO,H,,HCl,CO,,,NONE,NONE,1.0e-11
+# 527 energy = 4.15 eV
+
+# their reaction R90
+528,H,Cl2,,HCl,Cl,,,NONE,NONE,1.4e-10 * exp(-90.0/Tneut)
+# 528 energy = 1.96 eV
+
+# their reaction R91
+529,Cl,HO2,,OH,ClO,,,NONE,NONE,4.1e-11 * exp(-450.0/Tneut)
+# 529 energy = -0.16 eV
+
+# their reaction R95
+530,ClCO3,H,,CO2,Cl,OH,,NONE,NONE,1.0e-11
+# 530 energy = 0.0 eV
+
+# their reaction R106
+531,O_1d,HCl,,Cl,OH,,,NONE,NONE,1.0e-10
+# 531 energy = 0.0 eV
+
+# their reaction R115
+532,O_1d,HCl,,O,HCl,,,NONE,NONE,1.4e-11
+# 532 energy = 0.0 eV
+
+# their reaction R116
+533,O_1d,HCl,,H,ClO,,,NONE,NONE,3.6e-11
+# 533 energy = 0.0 eV
+
+# their reaction R127
+534,ClO,H2,,HCl,OH,,,NONE,NONE,1.0e-12 * exp(-4800.0/Tneut)
+# 534 energy = 1.62 eV
+
+# their reaction R128
+535,O,H,,OH,,,,NONE,NONE,1.3e-29 * Tneut**(-1.0)
+# 535 energy = 4.45 eV
+
+# their reaction R130
+536,H,OH,CO2,H2O,CO2,,,NONE,NONE,7.7e-26 * Tneut**(-2.0)
+# 536 energy = 5.15 eV
+
+@photo_start
+@format:idx,R,P,P,P,Tmin,Tmax,rate
+
+# their reaction R139
+537,HDO,H,OD,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/HDO_to_H_OD.dat
+# 537 bonding_energy = 6.67 eV
+
+# their reaction R140
+538,HDO,D,OH,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/HDO_to_D_OH.dat
+# 538 bonding_energy = 6.67 eV
+
+# their reaction R141
+539,DCl,D,Cl,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/DCl_to_D_Cl.dat
+# 539 bonding_energy = 4.43 eV
+
+@photo_stop
+
+# their reaction R142 (use rate from Reaction 10 here instead of theirs)
+540,O_1d,HDO,,OH,OD,,,NONE,NONE,2.2e-10
+# 540 energy = 0.0 eV
+
+# their reaction R143 (use rate from Reaction 15 here instead of theirs)
+541,O_1d,HD,,H,OD,,,NONE,NONE,1.0e-10
+# 541 energy = 0.0 eV
+
+# their reaction R144 (use rate from Reaction 15 here instead of theirs)
+542,O_1d,HD,,D,OH,,,NONE,NONE,1.0e-10
+# 542 energy = 0.0 eV
+
+# their reaction R146
+543,D,O2,CO2,DO2,CO2,,,NONE,NONE,2.0e-31 * (Tneut/300.0)**(-1.6)
+# 543 energy = 0.0 eV
+
+# their reaction R147 (use rate from Reaction 19 here instead of theirs)
+544,D,O3,,OD,O2,,,NONE,NONE,1.4e-10 * exp( -470.0 / Tneut )
+# 544 energy = 3.39 eV
+
+# their reaction R149 (use rate from Reaction 109 here instead of theirs)
+545,O,DO2,,OD,O2,,,NONE,NONE,3.0e-11 * exp(200.0 / Tneut)
+# 545 energy = 0.0 eV
+
+# their reaction R150 (use rate from Reaction 23 here instead of theirs)
+546,O,OD,,O2,D,,,NONE,NONE,2.0e-11 * exp(117.0 / Tneut)
+# 546 energy = 0.66 eV
+
+# their reaction R151 (use rate from Reaction 24 here instead of theirs)
+547,OD,CO,,CO2,D,,,NONE,NONE,1.5e-13
+# 547 energy = 1.01 eV
+
+# their reaction R152 (use rate from Reaction 25 here instead of theirs)
+548,OD,H2,,HDO,H,,,NONE,NONE,7.7e-12 * exp(-2100.0 / Tneut)
+# 548 energy = -4.42 eV
+
+# their reaction R153 (use rate from Reaction 25 here instead of theirs, but multipled by 0.5 as in their R153)
+549,OH,HD,,HDO,H,,,NONE,NONE,0.5*7.7e-12 * exp(-2100.0 / Tneut)
+# 549 energy = -4.41 eV
+
+# their reaction R154 (use rate from Reaction 25 here instead of theirs, but multipled by 0.5 as in their R153)
+550,OH,HD,,H2O,D,,,NONE,NONE,0.5*7.7e-12 * exp(-2100.0 / Tneut)
+# 550 energy = 0.60 eV
+
+# their reaction R155 (use rate from Reaction 108 here instead of theirs)
+551,OD,O3,,DO2,O2,,,NONE,NONE,1.6e-12 * exp(-940.0 / Tneut)
+# 551 energy = 0.0 eV
+
+# their reaction R156 (use rate from Reaction 110 here instead of theirs)
+552,DO2,O3,,OD,O2,O2,,NONE,NONE,1.1e-14 * exp(-500.0 / Tneut)
+# 552 energy = 0.0 eV
+
+# their reaction R157 (use rate from Reaction 106 here instead of theirs)
+553,D,HO2,,OH,OD,,,NONE,NONE,8.1e-11 * 0.9
+# 553 energy = 1.55 eV
+
+# their reaction R158 (use rate from Reaction 106 here instead of theirs)
+554,H,DO2,,OH,OD,,,NONE,NONE,8.1e-11 * 0.9
+# 554 energy = 0.0 eV
+
+# their reaction R159 (use rate from Reaction 104 here instead of theirs)
+555,D,HO2,,HDO,O,,,NONE,NONE,8.1e-11 * 0.02
+# 555 energy = -2.81 eV
+
+# their reaction R160 (use rate from Reaction 104 here instead of theirs)
+556,H,DO2,,HDO,O,,,NONE,NONE,8.1e-11 * 0.02
+# 556 energy = 0.0 eV
+
+# their reaction R163 (use rate from Reaction 105 here instead of theirs)
+557,D,HO2,,HD,O2,,,NONE,NONE,8.1e-11 * 0.08
+# 557 energy = 2.32 eV
+
+# their reaction R164 (use rate from Reaction 105 here instead of theirs)
+558,H,DO2,,HD,O2,,,NONE,NONE,8.1e-11 * 0.08
+# 558 energy = 0.0 eV
+
+# their reaction R168 (use rate from Reaction 107 here instead of theirs)
+559,OD,HO2,,HDO,O2,,,NONE,NONE,4.8e-11 * exp(250.0 / Tneut)
+# 559 energy = -2.14 eV
+
+# their reaction R169 (use rate from Reaction 107 here instead of theirs)
+560,OH,DO2,,HDO,O2,,,NONE,NONE,4.8e-11 * exp(250.0 / Tneut)
+# 560 energy = 0.0 eV
+
+# their reaction R171 (use rate from Reaction 289 here instead of theirs)
+561,D,H,CO2,HD,CO2,,,NONE,NONE,1.2e-32 * (Tneut/300.0)**(-1.3)
+# 561 energy = 4.55 eV
+
+# their reaction R172
+562,D,HCl,,HD,Cl,,,NONE,NONE,1.5e-11 * exp(-1750.0/Tneut)
+# 562 energy = 0.08 eV
+
+# their reaction R173
+563,H,DCl,,HD,Cl,,,NONE,NONE,1.5e-11 * exp(-1750.0/Tneut)
+# 563 energy = 0.03 eV
+
+# their reaction R174
+564,OD,HCl,,Cl,HDO,,,NONE,NONE,2.6e-12 * exp(-350.0/Tneut)
+# 564 energy = -4.38 eV
+
+# their reaction R175
+565,OH,DCl,,Cl,HDO,,,NONE,NONE,2.6e-12 * exp(-350.0/Tneut)
+# 565 energy = -4.38 eV
+
+# their reaction R176
+566,O,DCl,,OD,Cl,,,NONE,NONE,1.0e-11 * exp(-3300.0/Tneut)
+# 566 energy = -0.02 eV
+
+# their reaction R177
+567,Cl,HD,,DCl,H,,,NONE,NONE,0.5*3.7e-11 * exp(-2300.0/Tneut)
+# 567 energy = -0.03 eV
+
+# their reaction R178
+568,Cl,HD,,HCl,D,,,NONE,NONE,0.5*3.7e-11 * exp(-2300.0/Tneut)
+# 568 energy = -0.08 eV
+
+# their reaction R179 (rate coefficient reasonable???)
+569,Cl,OD,,DCl,O,,,NONE,NONE,1.2 * exp(-510.0/Tneut)
+# 569 energy = 0.02 eV
+
+# their reaction R181
+570,Cl,DO2,,DCl,O2,,,NONE,NONE,1.8e-11 * exp(170.0/Tneut)
+# 570 energy = 0.0 eV
+
+# their reaction R182
+571,ClO,OD,,DO2,Cl,,,NONE,NONE,1.1e-11 * exp(120.0/Tneut)
+# 571 energy = 0.0 eV
+
+# their reaction R184
+572,Cl,D,,DCl,,,,NONE,NONE,1.0e-32 * total_density
+# 572 energy = 4.52 eV
+
+# their reaction R185
+573,ClCO,D,,DCl,CO,,,NONE,NONE,1.0e-11
+# 573 energy = 4.20 eV
+
+# their reaction R186
+574,D,Cl2,,DCl,Cl,,,NONE,NONE,1.4e-10 * exp(-90.0/Tneut)
+# 574 energy = 2.01 eV
+
+# their reaction R187
+575,Cl,DO2,,OD,ClO,,,NONE,NONE,4.1e-11 * exp(-450.0/Tneut)
+# 575 energy = 0.0 eV
+
+# their reaction R188
+576,ClCO3,D,,CO2,Cl,OD,,NONE,NONE,1.0e-11
+# 576 energy = 0.0 eV
+
+# their reaction R189 (use rate from Reaction 16 here instead of theirs)
+577,O,HD,,OD,H,,,NONE,NONE,0.5*1.6e-11 * exp(-4570.0 / Tneut)
+# 577 energy = -0.05 eV
+
+# their reaction R190 (use rate from Reaction 16 here instead of theirs)
+578,O,HD,,OH,D,,,NONE,NONE,0.5*1.6e-11 * exp(-4570.0 / Tneut)
+# 578 energy = -0.10 eV
+
+# their reaction R191 (use rate from Reaction 26 here instead of theirs)
+579,OD,OH,,HDO,O,,,NONE,NONE,6.2e-14 * (Tneut/300.0)**(2.62) * exp(945.0/Tneut)
+# 579 energy = -4.36 eV
+
+# their reaction R192
+580,O_1d,DCl,,Cl,OD,,,NONE,NONE,1.0e-10
+# 580 energy = 0.0 eV
+
+# their reaction R193 (the paper says to use k110 for rate, but no such reaction in network, use here their k65, which is our 525)
+581,OD,HCl,,HDO,Cl,,,NONE,NONE,2.6e-12 * exp(-350.0/Tneut)
+# 581 energy = -4.38 eV
+
+# their reaction R194 (the paper says to use k110 for rate, but no such reaction in network, use here their k65, which is our 525)
+582,OH,DCl,,HDO,Cl,,,NONE,NONE,2.6e-12 * exp(-350.0/Tneut)
+# 582 energy = -4.38 eV
+
+# their reaction R195 (the paper says to use k111 for rate, but no such reaction in network, just assume zero for now)
+583,DO2,HCl,,HDO,ClO,,,NONE,NONE,0.0
+# 583 energy = 0.0 eV
+
+# their reaction R196 (the paper says to use k111 for rate, but no such reaction in network, just assume zero for now)
+584,HO2,DCl,,HDO,ClO,,,NONE,NONE,0.0
+# 584 energy = -4.54 eV
+
+# their reaction R197
+585,O_1d,DCl,,O,DCl,,,NONE,NONE,1.4e-11
+# 585 energy = 0.0 eV
+
+# their reaction R198
+586,O_1d,DCl,,D,ClO,,,NONE,NONE,3.6e-11
+# 586 energy = 0.0 eV
+
+# their reaction R200
+587,ClO,HD,,DCl,OH,,,NONE,NONE,0.5*1.0e-12 * exp(-4800.0/Tneut)
+# 587 energy = 1.64 eV
+
+# their reaction R201
+588,ClO,HD,,HCl,OD,,,NONE,NONE,0.5*1.0e-12 * exp(-4800.0/Tneut)
+# 588 energy = 1.63 eV
+
+# their reaction R202
+589,O,D,,OD,,,,NONE,NONE,1.3e-29 * Tneut**(-1.0) * total_density
+# 589 energy = 4.50 eV
+
+# their reaction R205
+590,D,OH,CO2,HDO,CO2,,,NONE,NONE,7.7e-26 * Tneut**(-2.0)
+# 590 energy = 0.14 eV
+
+# their reaction R206
+591,H,OD,CO2,HDO,CO2,,,NONE,NONE,7.7e-26 * Tneut**(-2.0)
+# 591 energy = 0.10 eV
+
+
+#-------------------------------------------------------------
+
+# The following reactions are ion reactions involving D from Garcia Munoz (2007)
+# from their Table 10. The energies here are taken from various sources
+# The rates are sometimes replaced with values higher in this network for corresponding
+# hydrogen reactions
+
+# Use rate and energy from Eqn 94 here instead of their value
+#598,HD+,e,,D,H,,,NONE,NONE,3.33e-8 * TgasIE**(-0.4)
+592,HD+,e,,D,H,,,NONE,NONE,1.75e-8 * (300.0 / TgasIE)**(0.4)
+# 592 energy = 10.91 eV
+
+# Use rate and energy from Eqn 96 here instead of their value
+#599,H2D+,e,,D,H,H,,NONE,NONE,7.59e-7 * TgasIE**(-0.5)
+593,H2D+,e,,D,H,H,,NONE,NONE,5.1e-8 * (300.0 / TgasIE)**(0.52)
+# 593 energy = 4.69 eV
+
+# Use rate and energy from Eqn 95 here instead of their value
+#600,H2D+,e,,HD,H,,,NONE,NONE,2.08e-7 * Tgas**(-0.5)
+594,H2D+,e,,HD,H,,,NONE,NONE,1.7e-8 * (300.0 / TgasIE)**(0.52)
+# 594 energy = 9.21 eV
+
+595,HD,H,,D,H2,,,NONE,NONE,7.5e-11 * exp(-4240.0/Tneut)
+# 595 energy = -0.04 eV
+
+# Use rate and energy from Eqn 68 here instead of their value
+#602,HD,H2+,,D,H3+,,,NONE,NONE,1.05e-9
+596,HD,H2+,,D,H3+,,,NONE,NONE,2.24e-9 * (TgasNI/300.0)**(-0.042) * exp(-TgasNI/46600.0)
+# 596 energy = 1.70 eV
+
+# Use rate and energy from Eqn 68 here instead of their value
+#603,HD,H2+,,H2D+,H,,,NONE,NONE,1.05e-9
+597,HD,H2+,,H2D+,H,,,NONE,NONE,2.24e-9 * (TgasNI/300.0)**(-0.042) * exp(-TgasNI/46600.0)
+# 597 energy = 1.70 eV
+
+598,HD,H+,,D+,H2,,,NONE,NONE,1.0e-9 * exp(-464.0/TgasNI)
+# 598 energy = -0.04 eV
+
+599,HD,H3+,,H2D+,H2,,,NONE,NONE,1.5e-9
+# 599 energy = 0.0 eV
+
+600,D,H2,,HD,H,,,NONE,NONE,7.5e-11 * exp(-3820.0/Tneut)
+# 600 energy = 0.04 eV
+
+601,D,H2+,,HD+,H,,,NONE,NONE,7.6e-10 * TgasNI**(0.06)
+# 601 energy = -0.05 eV
+
+602,D,H2+,,D+,H2,,,NONE,NONE,6.4e-10
+# 602 energy = 1.82 eV
+
+603,D,H+,,D+,H,,,NONE,NONE,1.0e-9 * exp(-41.0/TgasNI)
+# 603 energy = 0.0 eV
+
+
+604,D,H3+,,H2D+,H,,,NONE,NONE,1.0e-9
+# 604 energy = 0.0 eV
+
+605,HD+,H2,,D,H3+,,,NONE,NONE,1.05e-9
+# 605 energy = 1.75 eV
+
+## Use rate and energy from Eqn 68 here instead of their value
+#612,HD+,H2,,H2D+,H,,,NONE,NONE,1.05e-9
+606,HD+,H2,,H2D+,H,,,NONE,NONE,2.24e-9 * (TgasNI/300.0)**(-0.042) * exp(-TgasNI/46600.0)
+# 606 energy = 0.0 eV
+
+607,HD+,H,,HD,H+,,,NONE,NONE,6.4e-10
+# 607 energy = 1.91 eV
+
+608,HD+,H,,D,H2+,,,NONE,NONE,1.0e-9 * exp(-154.0/TgasNI)
+# 608 energy = 0.05 eV
+
+609,D+,H2,,HD,H+,,,NONE,NONE,2.1e-9
+# 609 energy = 0.04 eV
+
+610,D+,H,,D,H+,,,NONE,NONE,1.0e-9
+# 610 energy = 0.0 eV
+
+
+611,H2D+,H2,,HD,H3+,,,NONE,NONE,1.92e-7 * TgasNI**(-0.8) * exp(-230.0/TgasNI)
+# 611 energy = 0.0 eV
+
+612,H2D+,H,,D,H3+,,,NONE,NONE,1.0e-9 * exp(-632.0/TgasNI)
+# 612 energy = 0.0 eV
+
+#-------------------------------------------------------------
+
+# The following deuterium photoionization reactions are just assumed
+# and the cross-sections are assumed to be the same as the normal
+# H versions
+
+@photo_start
+
+@format:idx,R,P,P,P,Tmin,Tmax,rate
+
+613,HD,HD+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/HD_to_HDj_E.dat
+# 613 bonding_energy = 15.43 eV
+
+614,HD,H+,D,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/HD_to_D_Hj_E.dat
+# 614 bonding_energy = 17.71 eV
+
+615,HD,D+,H,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/HD_to_H_Dj_E.dat
+# 615 bonding_energy = 17.71 eV
+
+616,D,D+,e,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/D_to_Dj_E.dat
+# 616 bonding_energy = 13.6 eV
+
+@photo_stop
+#---------------------
+
+# The following reactions express the sulphur chemistry and have
+# been collected from various works.
+
+617,SO,SO,,SO2,S,,,NONE,NONE,1.0e-12*exp(-(4186*3.3/(Tneut*8.31446261815324)))
+# 617 energy = 0.29 eV
+
+618,CS,OH,,OCS,H,,,NONE,NONE,1.7e-10
+# 618 energy = 2.48 eV
+
+619,H,HS,,S,H2,,,10,800,2.50E-11
+# 619 energy = 0.95 eV
+
+620,H,SO2,,OH,SO,,,900,1800,4.51e-8*(Tneut/300)**(-2.3)*exp(-15582/Tneut)
+# 620 energy = -1.25 eV
+
+621,H,SO2,,OH,SO,,,10,800,9.25e-8*(Tneut/300)**(-0.74)*exp(-1.47*10**4/Tneut)
+# 621 energy = -1.25 eV
+
+##################################################################################################
+#this one causes a swath of problems for some goddamn reason, removed!
+#000,H2S,H,,HS,H2,,,190,2237,5.8e-17*Tneut**1.94*exp(-455.0/(1.987*Tneut))
+
+# added this instead, it was missing (KIDA)
+622,H2S,OH,,HS,H2O,,,10,800,6.10E-12*exp(-80.0/Tneut) 
+# 622 energy = 1.24 eV
+###################################################################################################
+
+623,H2S,O,,H,HSO,,,NONE,NONE,5e-10*exp(-3850.0/Tneut)
+# 623 energy = 0.34 eV
+
+624,HS,NO,,HSNO,,,,1,249,2.4e-31*(Tneut/300)**(-3)*total_density/(1+ 2.4e-31*(Tneut/300)**(-3)*total_density/2.71e-11)
+# 624 energy = 0.0 eV
+
+625,HS,NO,,HSNO,,,,250,445,3.715e-25*Tneut**(-2.48)
+# 625 energy = 0.0 eV
+
+626,HS,NO,,HSNO,,,,446,100000000.0,2.4e-31*(Tneut/300)**(-3)*total_density/(1+ 2.4e-31*(Tneut/300)**(-3)*total_density/2.71e-11)
+# 626 energy = 0.0 eV
+
+627,HS,N2O,,N2,HSO,,,NONE,NONE,5e-16
+# 627 energy = 2.53 eV
+
+628,HS,NO2,,NO,HSO,,,221,415,2.9e-11*exp(237/Tneut)
+# 628 energy = 0.93 eV
+
+629,HS,O3,,O2,HSO,,,296,431,1.1e-11*exp(-280/Tneut)
+# 629 energy = 3.05 eV
+
+630,HSO,,,H,SO,,,1520,1820,1.4e-8*exp(-2.95e4/Tneut)*total_density/(1 + 1.4e-14*exp(-2.95e4/Tneut)*total_density/(3.38e11*(Tneut/300)**(-1)*exp(-2.95e4/Tneut)))
+# 630 energy = -2.54 eV
+
+631,HSO,NO2,,NO,HSO2,,,NONE,NONE,9.6e-12
+# 631 energy = 1.65 eV
+
+632,HSO2,O2,,HO2,SO2,,,NONE,NONE,3.01e-13
+# 632 energy = -0.65 eV
+
+633,O,S2O,,SO,SO,,,NONE,NONE,1.7e-12
+# 633 energy = 1.91 eV
+
+634,O,SO2,,SO3,,,,299,400,4e-32*exp(-1000/Tneut)*total_density
+# 634 energy = 3.61 eV
+
+635,OCS,O,,CO,SO,,,239,404,1.99e-11*exp(-2150/Tneut)
+# 635 energy = 5.11 eV
+
+636,S,O,,SO,,,,NONE,NONE,1.0e6*3.01e-45*total_density/(1+3.01e-45*total_density/(7.27e-20*(Tneut/300)**(-1)))
+# 636 energy = 5.42 eV
+
+637,S,O2,,SO,O,,,250,430,2.1e-12
+# 637 energy = 0.26 eV
+
+638,S,OH,,SO,H,,,NONE,NONE,6.6e-11
+# 638 energy = 0.92 eV
+
+639,S,S,,S2,,,,100,500,3.95e-33*total_density/(1+3.95e-33*total_density/(9.09e-14))
+# 639 energy = 4.46 eV
+
+640,S,HS,,S2,H,,,NONE,NONE,4.98e-12
+# 640 energy = 0.84 eV
+
+#KIDA
+641,HS,CS,,CS2,H,,,NONE,NONE,1e-11 
+# 641 energy = -2.48 eV
+
+642,C,H2S,,H,HCS,,,10,800,2.5e-11
+# 642 energy = 2.03 eV
+
+643,SO,NO2,,SO2,NO,,,210,363,1.37e-11
+# 643 energy = 2.54 eV
+
+#-------------------------------------------------------------
+
+# The following photoionization reactions relate to sulphur
+# bearing species.
+
+@photo_start
+
+@format:idx,R,P,P,P,Tmin,Tmax,rate
+
+644,SO2,SO,O,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/SO2_to_SO_O.dat
+# 644 bonding_energy = 5.42 eV
+
+645,SO2,S,O2,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/SO2_to_S_O2.dat
+# 645 bonding_energy = 5.66 eV
+
+646,OCS,CO,S,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/OCS_to_CO_S.dat
+# 646 bonding_energy = 4.29 eV
+
+647,OCS,CS,O_1d,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/OCS_to_CS_O1d.dat
+# 647 bonding_energy = 6.81 eV
+
+648,OCS,C+,SO,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/OCS_to_Cj_SO_e.dat
+# 648 bonding_energy = 8.99 eV
+
+649,OCS,CS,O+,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/OCS_to_CS_Oj_e.dat
+# 649 bonding_energy = 6.81 eV
+
+650,OCS,CS,O,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/OCS_to_CS_O.dat
+# 650 bonding_energy = 6.81 eV
+
+651,CS2,C+,S2,e,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CS2_to_Cj_S2_e.dat
+# 651 bonding_energy = 9.12 eV
+
+@photo_stop
+
+#-------------------------------------------------------------
+
+# The following reactions express the sulphur chemistry producing
+# HNCS and NS and have been collected from Tsai et al. 2023.
+
+
+
+652,S,CN,,N,CS,,,10,800,9.99e-13*Tneut**0.5
+# 652 energy = 2.96 eV
+
+653,CS,NH2,,H,HNCS,,,10,800,10e-12*exp(-600/Tneut)
+# 653 energy = 1.38 eV
+
+654,NH,HCS,,H,HNCS,,,10,800,5e-11
+# 654 energy = 3.2 eV
+
+655,CS,OH,,CO,HS,,,10,800,3e-11
+# 655 energy = 2.99 eV
+
+656,HS,N,,H,NS,,,10,280,1.00e-10
+# 656 energy = 1.24 eV
+
+657,O,NS,,S,NO,,,10,800,3.00e-11
+# 657 energy = 1.69 eV
+
+658,HCS,H,,CS,H2,,,10,800,1.5e-10
+# 658 energy = 2.33 eV
+
+659,S2,N,,NS,S,,,10,800,9.99e-13*Tneut**0.5*exp(-4000/Tneut)
+# 659 energy = 0.5 eV
+
+660,SO,N,,O,NS,,,10,800,2.7*10**(-12)*Tneut**0.5*exp(-8250/Tneut)
+# 660 energy = 1.16 eV
+
+661,NH,NS,,N2,S,,,10,800,4e-11*(Tneut/300)**(-0.2)*exp(-20/Tneut)
+# 661 energy = 4.92 eV
+
+662,C,NS,,S,CN,,,10,800,2e-10
+# 662 energy = 2.96 eV
+
+663,He+,HCNS,,CH+,NS,He,,10,638,0.1*3e-9*(0.62+0.4767*2.92*(300/TgasNI)**0.5)
+# 663 energy = 0.00 eV
+
+664,He+,HCNS,,CH+,NS,He,,639,800,0.1*3e-9*(1+0.0967*2.92*(300/TgasNI)**0.5+2.92**2*300/(10.523*TgasNI))
+# 664 energy = 0.00 eV
+
+#-------------------------------------------------------------
+
+# The following photoionization reactions relate to sulphur
+# bearing species.
+
+@photo_start
+
+@format:idx,R,P,P,P,Tmin,Tmax,rate
+
+665,H2S,HS,H,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/H2S_to_HS_H.dat
+# 665 bonding_energy = 3.61 eV
+
+666,SO,S,O,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/SO_to_S_O.dat
+# 666 bonding_energy = 5.36 eV
+
+@photo_stop
+
+#-------------------------------------------------------------
+
+# The following reactions express the sulphur chemistry based on
+# estimates and have been collected from various sources.
+
+667,S,S3,,S2,S2,,,0.1,1000,0.00000000008
+# 667 energy = 1.71 eV
+
+668,S,S2,,S3,,,,0.1,1000,1.0e-25 *Tneut**(-2) *total_density/(1+1.0e-25 *Tneut**(-2) *total_density/(3.0e-11))
+# 668 energy = 2.75 eV
+
+669,S2,S2,,S4,,,,0.1,1000,2.2e-41*total_density/(1+2.2e-25*total_density)
+# 669 energy = 1.14 eV
+
+670,S2,S4,,S6,,,,0.1,1000,1.11e-48*(Tneut/300)**(-2.0)*total_density/(1+1.11e-42*(Tneut/300)**(-2.0)*total_density/(3e-17))
+# 670 energy = 1.78 eV
+
+671,S2,S6,,S8,,,,0.1,1000,1.11e-48*(Tneut/300)**(-2.0)*total_density/(1+1.11e-42*(Tneut/300)**(-2.0)*total_density/(3e-17))
+# 671 energy = 1.34 eV
+
+672,S4,S4,,S8,,,,0.1,1000,1.0e-48*(Tneut/300)**(-2.0)*total_density/(1+1.0e-42*(Tneut/300)**(-2.0)*total_density/(3e-17))
+# 672 energy = 1.98 eV
+
+673,O,S2O,,SO,SO,,,NONE,NONE,1.7e-12
+# 673 energy = 1.89 eV
+
+674,S,SO,,S2O,,,,NONE,NONE,3.67e-49*(Tneut/300)**(-2)*total_density/(1+3.67e-43*(Tneut/300)**(-2)*total_density/(8.86e-19*(Tneut/300)**(-3)))
+# 674 energy = 3.53 eV
+
+675,S2O,S2O,,S3,SO2,,,NONE,NONE,1.0e-14
+# 675 energy = 0.44 eV
+
+676,S2,SO3,,S2O,SO2,,,NONE,NONE,2e-16
+# 676 energy = 0.88 eV
+
+677,S3,SO,,S2O,S2,,,NONE,NONE,1.0e-12
+# 677 energy = 0.78 eV
+
+#----------------------------------------------------------------------
+
+678,N_2d,CH4,,NH,CH3,,,50,200,1.60e-10*(Tneut/300)**0.00e+0 * exp(-2.67e+2/Tneut)
+# 678 energy = 0.0 eV #NA in KIDA
+
+#----------------------------------------------------------------------
+
+679,NH,N,,N2,H,,,10,500,5.00e-11*(Tneut/300)**1.00e-1 * exp(-0.00e+0/Tneut)
+# 679 energy = 6.4 eV # KIDA
+
+#-----------------------------------------------------------------------
+#rate coefficient from Yung et al. 1984
+680,CH3,N,,HCN,H2,,,10,300,5.00e-11*exp(-250.0/Tneut)
+# 680 energy = 5.07 eV # KIDA
+
+#------------------------------------------------------------------------
+#the following four reactions involving OH and CH3 are taken from Wong+2002
+# and fron Baulch et al. 2005 in KIDA.
+#rate coefficient from Wong et al. 2002
+681,OH,CH3,,CH2_sg,H2O,,,150,1200,1.0e-10*(Tneut/300)**(-0.91) * exp(-275.0/Tneut)
+# 681 energy = 0.35 eV
+
+
+#-------------------------------------------------------------------------
+#rate coefficient from KIDA, Baulch et al. 2005
+682,OH,CH3,,CH3O,H,,,298,2000,2.00e-14*(Tneut/300)**0.00e+0 * exp(-6990/Tneut)
+# 682 energy = -0.58 eV
+
+#--------------------------------------------------------------------------
+#from KIDA
+683,OH,CH3,,CH2OH,H,,,298,2000,1.2e-12*(Tneut/300)**0.00e+0 * exp(-2760/Tneut)
+# 683 energy = -0.18 eV
+
+
+#---------------------------------------------------------------------------
+684,OH,CH3,,H2,H2CO,,,298,2000,5.3e-15 * exp(-2760/Tneut)
+# 684 energy = 3.04 eV
+
+#---------------------------------------------------------------------------
+685,CH2_sg,N2,,CH2,N2,,,43,200,6.00e-12*(Tneut/300)**(-7.39e-1)*exp(-0.00/Tneut)
+# 685 energy = 0.4 eV # calculated from Argonne ATcT
+
+#----------------------------------------------------------------------------
+686,CH2_sg,N2,,CH2,N2,,,200,798,6.55e-12*(Tneut/300)**1.17e+0 *exp(-153/Tneut)
+# 686 energy = 0.4 eV # calculated from Argonne ATcT
+
+#----------------------------------------------------------------------------
+# rate coefficient from Yung et al. 1984, same info also in KIDA
+687,CH2,CH2,,C2H2,H2,,,50,200,5.3e-11
+# 687 energy = 1.7 eV #KIDA
+
+#----------------------------------------------------------------------------
+688,CH,CH4,,C2H4,H,,,10,298,1.6e-10*(Tneut/300)**(-1.04)*exp(-36.1/Tneut)
+# 688 energy = 2.5 eV #KIDA
+
+#-----------------------------------------------------------------------------
+#additional branch of reaction 699 also relevant for higher temperature
+#taken from KIDA, reference points to high Temp ISM application, Harada et al. 2010
+689,CH,CH4,,CH2,CH3,,,10,800,2.28e-11*(Tneut/300)**0.7 * exp(-3000/Tneut)
+# 689 energy = -0.2 eV #KIDA
+
+#------------------------------------------------------------------------------
+# from Baulch et al. 2005, KIDA
+690,CH2,CH3,,C2H4,H,,,298,3000,1.2e-10
+# 690 energy = 2.7 eV #KIDA
+
+#-------------------------------------------------------------------------------
+# from Hebrard et al. 2009, KIDA
+691,CH2,CH3,,C2H4,H,,,50,200,7.0e-11
+# 691 energy = 2.7 eV #KIDA
+
+#-------------------------------------------------------------------------------
+692,CH2_sg,H2,,CH3,H,,,10,280,5.0e-11 * exp(-4870/Tneut)
+# 692 energy = 0.3 eV #KIDA
+
+#-------------------------------------------------------------------------------
+693,CH2_sg,CH4,,CH3,CH3,,,43,498,787e-11*(Tneut/300)**(-0.467) * exp(-28.8/Tneut)
+# 693 energy = 0.26 eV
+
+#-------------------------------------------------------------------------------
+#reaction that requires M, M is N2 according to KIDA for these temp, higher temp
+#in 704 hotter temp
+694,CH3,CH3,,C2H6,,,,50,200,1.13e-25*(Tneut/300)**(-3.75)*exp(-494/Tneut) * total_density
+# 694 energy = 3.8 eV #calculated from NIST Chem Webbok+Argonne
+
+#--------------------------------------------------------------------------------
+#see comment above
+695,CH3,CH3,,C2H6,,,,300,2000,1.6e-24*(Tneut/300)**(-7.00)*exp(-1390/Tneut) * total_density
+# 695 energy = 3.8 eV #NIST+Argonne
+
+#---------------------------------------------------------------------------------
+696,C2H,CH4,,C2H2,CH3,,,150,780,7.67e-12*(Tneut/300)**(0.94)*exp(-328/Tneut)
+# 696 energy = 1.2 eV #KIDA
+
+#---------------------------------------------------------------------------------
+697,C2,CH4,,C2H,CH3,,,50,200,5.05e-11*exp(-297/Tneut)
+# 697 energy = 0.4 eV #KIDA
+
+#----------------------------------------------------------------------------------
+#from Hebrard et al. 2009
+698,C2H2,CN,,H,HC3N,,,50,200,2.71e-10*(Tneut/300)**(-0.52)*exp(-20.00/Tneut)
+# 698 energy = 0.9 eV #KIDA
+
+#----------------------------------------------------------------------------------
+#SAME as 710, but C2N2 does not photodissociate according to KIDA
+#according to Yung it does.
+699,CN,HCN,,C2N2,H,,,50,200,4.3e-13*(Tneut/300)**1.71*exp(-770.0/Tneut)
+# 699 energy = 0.43 eV
+#------------------------------------------------------------------------------------
+
+700,CN,CH4,,HCN,CH3,,,160,1500,6.2e-12*exp(-735/Tneut)
+# 700 energy = 0.93 eV
+
+#-----------------------------------------------------------------------------------
+#low temperature for Titan taken from a second entry in KIDA, Hebrard+2009 not verified and KIDA recommends using 712. So this is only used for the case of Titan
+701,CN,CH4,,HCN,CH3,,,10,160,5.73e-12*exp(-675/Tneut)
+# 701 energy = 0.93 eV
+
+#------------------------------------------------------------------------------------
+702,C2H,HCN,,HC3N,H,,,50,200,5.3e-12*exp(-770/Tneut)
+# 702 energy = 1.2 eV #KIDA
+
+#------------------------------------------------------------------------------------
+703,C2H,C2H6,,C2H2,C2H5,,,150,780,3.33e-11*(Tneut/300)**(-0.28)*exp(62/Tneut)
+# 703 energy = 1.40 eV
+
+
+#------------------------------------------------------------------------------------
+704,C2H,C2H2,,C4H2,H,,,50,2700,1.3e-10
+# 704 energy = 1.22 eV
+
+
+#-------------------------------------------------------------------------------------
+#Huo et al. 2011
+705,C4H,CH4,,C4H2,CH3,,,300,1000,2.98e-13*(Tneut/300)**2.72*exp(-371/Tneut)
+# 705 energy = 1.0 eV # KIDA
+
+#--------------------------------------------------------------------------------------
+#rate constant from Hebrard et al. 2009
+706,C2,H2,,C2H,H,,,50,200,1.77e-10*exp(-1470/Tneut)
+# 706 energy = 1.5 eV #calculated based on NIST data
+
+#--------------------------------------------------------------------------------------
+707,C2H,H2,,C2H2,H,,,180,300,1.95e-12*(Tneut/300)**2.32*exp(-444/Tneut)
+# 707 energy = 1.3 eV
+
+#--------------------------------------------------------------------------------------
+708,C2H,H2,,C2H2,H,,,50,180,1.2e-11*exp(-998/Tneut)
+# 708 energy = 1.3 eV
+
+#--------------------------------------------------------------------------------------
+709,C4H,C2H6,,C4H2,C2H5,,,50,200,2.87e-11*(Tneut/300)**(-1.24)*exp(-25.6/Tneut)
+# 709 energy = 1.1 eV #KIDA
+
+#--------------------------------------------------------------------------------------
+#three body, M is N2 according to KIDA
+710,CH3,C2H5,,C3H8,,,,50,200,1.05e-19*(Tneut/300)**(-16.1)*exp(-1900/Tneut) * total_density
+# 710 energy = 3.86 eV
+
+#--------------------------------------------------------------------------------------
+#three body with N2
+711,C2H2,H,,C2H3,,,,50,200,3.3e-30*exp(-740/Tneut) * total_density
+# 711 energy = 1.5 eV #KIDA
+
+#-------------------------------------------------------------------------------------
+#Baulch gives the rate for 300 K only.
+712,C2H3,H,,C2H2,H2,,,300,300,7.00e-11
+# 712 energy = 3.0 eV
+
+#-------------------------------------------------------------------------------------
+713,C2H3,C2H3,,C2H2,C2H4,,,50,200,3.5e-11
+# 713 energy = 0.1 eV
+
+#-------------------------------------------------------------------------------------
+#three body with N2
+714,H,HCN,,H2CN,,,,50,200,3.3e-30*(Tneut/300)**(-2.73)*exp(-3860/Tneut) * total_density
+# 714 energy = 1.1 eV #KIDA
+
+#-------------------------------------------------------------------------------------
+715,H,H2CN,,H2,HCN,,,10,300,6.0e-11
+# 715 energy = 3.4 eV #KIDA
+
+#-------------------------------------------------------------------------------------
+#three body
+716,C2H4,H,,C2H5,,,,50,200,1.39e-29*exp(-562/Tneut) * total_density
+# 716 energy = 1.4 eV
+
+#-------------------------------------------------------------------------------------
+#three body
+717,C2H4,H,,C2H5,,,,300,800,1.30e-29*exp(-380/Tneut) * total_density
+# 717 energy = 1.4 eV
+
+#-------------------------------------------------------------------------------------
+718,C2H5,H,,CH3,CH3,,,10,300,5.99e-11
+# 718 energy = 1.9 eV
+
+#-------------------------------------------------------------------------------------
+719,C2H5,H,,H2,C2H4,,,300,2000,7.0e-11
+# 719 energy = 2.9 eV
+
+#-------------------------------------------------------------------------------------
+720,C2H5,H,,H2,C2H4,,,10,300,3.0e-12
+# 720 energy = 2.9 eV
+
+#-------------------------------------------------------------------------------------
+#third body reaction, 2 different energies in KIDA.took the 1st one. M is N2 here
+721,CH3C2H,H,,CH3,C2H2,,,50,200,8.89e-29*(Tneut/300)*(-2.0)*exp(-1220/Tneut) * total_density
+# 721 energy = 2.3 eV
+
+#------------------------------------------------------------------------------------
+#third body N2
+722,C4H2,H,,C4H3,,,,50,200,3.3e-30*exp(-740/Tneut) * total_density
+# 722 energy = 1.3 eV
+
+#------------------------------------------------------------------------------------
+723,C4H3,H,,C2H2,C2H2,,,50,200,3.30e-12
+# 723 energy = 5.5 eV
+
+#------------------------------------------------------------------------------------
+724,C4H3,H,,H2,C4H2,,,10,800,8.30e-11
+# 724 energy = 3.2 eV
+
+#------------------------------------------------------------------------------------
+#three body N2, energy not known
+725,H,C2N2,,HC2N2,,,,50,200,1.0e-28*exp(-740/Tneut) * total_density
+# 725 energy = 0.0 eV
+
+#-------------------------------------------------------------------------------------
+726,HC2N2,H,,HCN,HCN,,,50,200,1.7e-13*exp(-110/Tneut)
+# 726 energy = 0.0 eV
+
+#--------------------------------------------------------------------------------------
+#three body
+727,HC3N,H,,H2C3N,,,,50,200,4.19e-36*exp(-740/Tneut) * total_density
+# 727 energy = 1.4 eV
+
+#---------------------------------------------------------------------------------------
+728,H2C3N,H,,HCN,C2H2,,,50,200,1.5e-11
+# 728 energy = 3.1 eV
+
+#---------------------------------------------------------------------------------------
+#third body
+729,C4H3,H,,C4H4,,,,50,200,3.47e-27*(Tneut/300)**(-1.30)*exp(-0.00/Tneut) * total_density
+# 729 energy = 4.8 eV
+
+#-------------------------------------------------------------------------------------
+#Hebrard et al. 2009, the following 2 are the same reactions but at diff temp
+730,C4H,CH4,,C4H2,CH3,,,50,200,1.7e-12*exp(-619/Tneut)
+# 730 energy = 1.0 eV # KIDA
+
+#-------------------------------------------------------------------------------------
+#Bertolite et al. 2010
+731,C4H,CH4,,C4H2,CH3,,,200,300,1.6e-11*exp(-610/Tneut)
+# 731 energy = 1.0 eV # KIDA
+
+#-------------------------------------------------------------------------------------
+#same reaction as 724 but for lower temperature from Hebrard et al. 2009
+732,C2H3,H,,C2H2,H2,,,50,200,2.00e-11
+# 732 energy = 3.0 eV
+
+
+#------------------------------------------------------------------------------------------
+# bond dissociation energies calcuated from enthalpy of formation
+#found in NIST chem webbook or in JANAF/NIST
+
+@photo_start
+
+@format:idx,R,P,P,P,Tmin,Tmax,rate
+733,CH4,CH2_sg,H2,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CH4_to_1CH2_H2.dat
+# 733 bonding_energy = 5.14 eV
+
+734,CH4,CH2,H,H,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CH4_to_CH2_2H.dat
+# 734 bonding_energy = 9.2 eV
+
+735,CH4,CH,H2,H,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CH4_to_CH_H2_H.dat
+# 735 bonding_energy = 9.1 eV
+
+736,C2H2,C2H,H,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/C2H2_to_C2H_H.dat
+# 736 bonding_energy = 4.9 eV
+
+737,C2H2,C2,H2,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/C2H2_to_C2_H2.dat
+# 737 bonding_energy = 6.3 eV
+
+738,HCN,H,CN,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/HCN_to_H_CN.dat
+# 738 bonding_energy = 5.4 eV
+
+739,HC3N,C2H,CN,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/HC3N_to_C2H_CN.dat
+# 739 bonding_energy = 5.7 eV
+
+740,C4H2,C4H,H,,NONE,NONE,@xsecFile=../../../Data/Ferradaz2008/C4H2_to_C4H_H.dat
+# 740 bonding_energy = 5.8 eV
+
+741,C4H2,C2H,C2H,,NONE,NONE,@xsecFile=../../../Data/Ferradaz2008/C4H2_to_C2H_C2H.dat
+# 741 bonding_energy = 5.1 eV
+
+742,C2N2,CN,CN,,NONE,NONE,@xsecFile=../../../Data/Halpern2018/C2N2_to_CN_CN.dat
+# 742 bonding_energy = 5.7 eV
+
+743,C2H6,C2H4,H2,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/C2H6_to_C2H4_H2.dat
+# 743 bonding_energy = 1.5 eV
+
+744,C2H4,C2H2,H,H,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/C2H4_to_C2H2_2H.dat
+# 744 bonding_energy =  6.3 eV
+
+745,C2H4,C2H2,H2,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/C2H4_to_C2H2_H2.dat
+# 745 bonding_energy = 1.8 eV
+
+746,C4H4,C4H2,H2,,NONE,NONE,@xsecFile=../../../Data/FahrNayak96/C4H4_to_C4H2_H2.dat
+# 746 bonding_energy = 1.8 eV
+
+747,C2H6,CH4,CH2_sg,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/C2H6_to_1CH2_CH4.dat
+# 747 bonding_energy = 4.6 eV
+
+748,C2H6,CH3,CH3,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/C2H6_to_CH3_CH3.dat
+# 748 bonding_energy = 3.9 eV
+
+749,CH4,CH3,H,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CH4_to_CH3_H.dat
+# 749 bonding_energy = 4.5 eV
+
+
+@photo_stop
+
+#------------------------------------
+#Bertolite et al. 2010
+750,C4H,CH4,,C4H2,CH3,,,300,1000,2.98e-13*(Tneut/300)**(2.72)* exp(-371/Tneut)
+# 750 energy = 1.0 eV # KIDA
+
+
+
+# additional sulfur reactions from VULCAN
+
+751,HS,O,,H,SO,,,10,280,1.60E-10
+# 751 energy = 1.72 eV
+
+752,C,HS,,H,CS,,,10,800,2.00E-10
+# 752 energy = 3.71 eV
+
+753,H,OCS,,CO,HS,,,NONE,NONE,9.07E-12*exp(-1940.0/Tneut)
+# 753 energy = 2.90 eV
+
+754,C,OCS,,CO,CS,,,NONE,NONE,1.01E-10
+# 754 energy = 6.61 eV
+
+755,CH4,S,,CH3,HS,,,NONE,NONE,3.39E-10*exp(-10000.0/Tneut)
+# 755 energy = -0.84 eV
+
+756,CH3,H2S,,CH4,HS,,,200,3000,1.13E-16*(Tneut/300)**1.2*exp(-722.0/Tneut)
+# 756 energy = 0.64 eV
+
+757,C2H5,H2S,,C2H6,HS,,,NONE,NONE,1.00E-12
+# 757 energy = 0.46 eV
+
+758,O,S2,,SO,S,,,298,1050,2.19E-11*exp(-84.0/Tneut)
+# 758 energy = 0.96 eV
+
+759,CS,O,,S,CO,,,150,300,2.70E-10*exp(-760.0/Tneut)
+# 759 energy = 3.74 eV
+
+760,O,CS2,,CS,SO,,,218,920,5.89E-11*exp(-821.0/Tneut)
+# 760 energy = 0.84 eV
+
+761,O,CS2,,OCS,S,,,294,500,3.65E-12*exp(-701.0/Tneut)
+# 761 energy = -0.04 eV
+
+762,O,CS2,,S2,CO,,,NONE,NONE,5.81E-14
+# 762 energy = 3.61 eV
+
+763,O,OCS,,S,CO2,,,NONE,NONE,8.30E-11*exp(-5530.0/Tneut)
+# 763 energy = 4.71 eV
+
+764,O,HS,,OH,S,,,298,2500,3.80E-13*(Tneut/300)**0.67*exp(-956.0/Tneut)
+# 764 energy = 0.75 eV
+
+765,OH,H2S,,H2O,HS,,,200,3000,1.61E-11*exp(-541.0/Tneut)
+# 765 energy = 1.24 eV
+
+766,N,NS,,S,N2,,,10,800,1.25E-10*(Tneut/300)**-(0.2)*exp(-20.0/Tneut)
+# 766 energy = 4.74 eV
+
+767,NO,CS,,OCS,N,,,NONE,NONE,1.00E-11*exp(-2500.0/Tneut)
+# 767 energy = -1.99 eV
+
+768,H2S,O,,OH,HS,,,200,2000,1.21E-16*(Tneut/300)**1.75*exp(-1460.0/Tneut)
+# 768 energy = 0.54 eV
+
+769,NH2,S,,NS,H2,,,NONE,NONE,1.00E-11
+# 769 energy = 2.05 eV
+
+770,CN,NS,,CS,N2,,,NONE,NONE,1.00E-14
+# 770 energy = 4.39 eV
+
+771,S,CH,,HS,C,,,10,800,9.99E-13*(Tneut/300)**0.5*exp(-4000.0/Tneut)
+# 771 energy = 0.18 eV
+
+772,S,CH,,CS,H,,,10,800,1.40E-10
+# 772 energy = 3.89 eV
+
+773,S,C2,,CS,C,,,10,800,2.00E-10
+# 773 energy = 1.15 eV
+
+774,S,C2H6,,C2H5,HS,,,880,1150,2.04E-10*exp(-7420.0/Tneut)
+# 774 energy = -0.67 eV
+
+775,HS,OH,,S,H2O,,,NONE,NONE,4.00E-12*exp(-240.0/Tneut)
+# 775 energy = 1.45 eV
+
+776,N,SO,,S,NO,,,10,280,1.50E-11*exp(-3680.0/Tneut)
+# 776 energy = 1.11 eV
+
+777,S,NH,,H,NS,,,10,800,1.00E-10
+# 777 energy = 1.62 eV
+
+778,S,NH,,N,HS,,,10,800,9.99E-13*(Tneut/300)**0.5*exp(-4000.0/Tneut)
+# 778 energy = 0.27 eV
+
+779,HS,NH2,,S,NH3,,,NONE,NONE,5.00E-12*exp(-500.0/Tneut)
+# 779 energy = 0.91 eV
+
+780,HS,HS,,S,H2S,,,NONE,NONE,3.16E-11
+# 780 energy = 0.21 eV
+
+781,HS,HS,,H2,S2,,,NONE,NONE,1.30E-11*exp(-20600.0/Tneut)
+# 781 energy = 1.56 eV
+
+782,H,HS2,,S,H2S,,,873,1423,7.32E-11*exp(-3183.0/Tneut)
+# 782 energy = 0.0 eV
+
+783,S,H2S,,S2,H2,,,NONE,NONE,1.00E-12*exp(-1500.0/Tneut)
+# 783 energy = 1.36 eV
+
+784,S,CS2,,CS,S2,,,1260,1280,2.82E-10*exp(-5920.0/Tneut)
+# 784 energy = -0.12 eV
+
+785,S,OCS,,CO,S2,,,298,985,2.86E-24*(Tneut/300)**3.97*exp(-580.0/Tneut)
+# 785 energy = 3.65 eV
+
+786,SO,C,,O,CS,,,10,800,1.00E-10
+# 786 energy = 1.99 eV
+
+787,SO,C,,S,CO,,,150,300,2.60E-10*exp(-760.0/Tneut)
+# 787 energy = 5.73 eV
+
+788,SO,OH,,SO2,H,,,295,703,1.79E-07*(Tneut/300)**-(1.35)
+# 788 energy = 1.26 eV
+
+789,SO,HS,,S2,OH,,,NONE,NONE,1.00E-13*exp(-2300.0/Tneut)
+# 789 energy = -0.22 eV
+
+790,H,HS2,,H2,S2,,,873,1423,2.08E-16*(Tneut/300)**1.65*exp(556.0/Tneut)
+# 790 energy = 0.0 eV
+
+791,S2,C,,S,CS,,,NONE,NONE,1.05E-12*(Tneut/300)**0.5
+# 791 energy = 2.96 eV
+
+792,S,HS2,,S2,HS,,,873,1423,1.00E-11
+# 792 energy = 0.0 eV
+
+793,HS,HS2,,S2,H2S,,,873,1423,1.00E-11
+# 793 energy = 0.0 eV
+
+794,S4,H,,HS2,S2,,,NONE,NONE,1.00E-11*exp(-2000.0/Tneut)
+# 794 energy = 0.0 eV
+
+795,S8,H,,HS2,S2,S4,,NONE,NONE,1.00E-11*exp(-8100.0/Tneut)
+# 795 energy = 0.0 eV
+
+796,SO2,C,,SO,CO,,,NONE,NONE,6.91E-11
+# 796 energy = 5.44 eV
+
+797,SO2,CO,,SO,CO2,,,1770,2450,4.47E-12*exp(-24300.0/Tneut)
+# 797 energy = -0.20 eV
+
+798,HS,NH3,,H2S,NH2,,,NONE,NONE,1.00E-11*exp(-7500.0/Tneut)
+# 798 energy = -0.75 eV
+
+799,HS,HCS,,H2S,CS,,,NONE,NONE,1.00E-10
+# 799 energy = 1.86 eV
+
+800,H2S,C,,CS,H2,,,NONE,NONE,2.10E-10
+# 800 energy = 4.32 eV
+
+801,HS2,OH,,S2,H2O,,,NONE,NONE,1.00E-10
+# 801 energy = 0.0 eV
+
+802,CS,SO,,CO,S2,,,NONE,NONE,1.00E-12
+# 802 energy = 2.78 eV
+
+803,CS,SO,,OCS,S,,,NONE,NONE,1.00E-11
+# 803 energy = -0.88 eV
+
+804,CS,OCS,,CS2,CO,,,NONE,NONE,1.00E-11
+# 804 energy = 3.78 eV
+
+805,CS2,H,,HS,CS,,,NONE,NONE,1.00E-10*exp(-10400.0/Tneut)
+# 805 energy = -0.88 eV
+
+806,CS2,HS,,HS2,CS,,,NONE,NONE,1.00E-12*exp(-14800.0/Tneut)
+# 806 energy = 0.0 eV
+
+807,OCS,HS,,CO,HS2,,,NONE,NONE,1.00E-11*exp(-2320.0/Tneut)
+# 807 energy = 0.0 eV
+
+808,CH2,S,,HCS,H,,,10,800,1.40E-10
+# 808 energy = 1.58 eV
+
+809,HCS,CH3,,CS,CH4,,,10,800,1.00E-11
+# 809 energy = 2.49 eV
+
+810,HCS,C2H5,,CS,C2H6,,,NONE,NONE,1.00E-11
+# 810 energy = 2.33 eV
+
+811,NS,OH,,NO,HS,,,NONE,NONE,1.00E-13
+# 811 energy = 0.73 eV
+
+812,H,S3,,HS,S2,,,NONE,NONE,5.00E-11*exp(-500.0/Tneut)
+# 812 energy = 0.96 eV
+
+813,H,S4,,HS,S3,,,NONE,NONE,5.00E-11*exp(-500.0/Tneut)
+# 813 energy = 0.86 eV
+
+814,S3,O,,S2,SO,,,NONE,NONE,8.00E-11
+# 814 energy = 2.67 eV
+
+815,S4,O,,S3,SO,,,NONE,NONE,8.00E-11
+# 815 energy = 2.58 eV
+
+816,OCS,OH,,CO2,HS,,,250,500,1.10E-13*exp(-1200.0/Tneut)
+# 816 energy = 3.96 eV
+
+817,S,S4,,S2,S3,,,NONE,NONE,8.00E-11
+# 817 energy = 1.61 eV
+
+818,S3,CO,,S2,OCS,,,NONE,NONE,1.00E-11*exp(-10000.0/Tneut)
+# 818 energy = -1.94 eV
+
+819,SO3,CO,,CO2,SO2,,,NONE,NONE,1.00E-11*exp(-13000.0/Tneut)
+# 819 energy = 1.91 eV
+
+820,HSO3,O2,,HO2,SO3,,,290,420,1.30E-12*exp(-330.0/Tneut)
+# 820 energy = 0.20 eV
+
+821,HS,O2,,SO2,H,,,NONE,NONE,2.49E-19*(Tneut/300)**2.123*exp(-5546.0/Tneut)
+# 821 energy = 2.26 eV
+
+822,HS,O2,,HSO,O,,,1400,1850,3.11E-11*exp(-9020.0/Tneut)
+# 822 energy = -0.91 eV
+
+823,S,O3,,SO,O2,,,NONE,NONE,1.20E-11
+# 823 energy = 4.31 eV
+
+824,CH3,HO2,,CH4,O2,,,300,2500,5.99E-12
+# 824 energy = 2.31 eV
+
+825,SO,O3,,SO2,O2,,,230,420,4.50E-12*exp(-1170.0/Tneut)
+# 825 energy = 4.60 eV
+
+826,SO3,O,,SO2,O2,,,300,500,2.32E-16*exp(-487.0/Tneut)
+# 826 energy = 1.56 eV
+
+827,SO,SO3,,SO2,SO2,,,NONE,NONE,1.99E-15
+# 827 energy = 2.10 eV
+
+828,HO2,HS,,OH,HSO,,,NONE,NONE,1.00E-11
+# 828 energy = 1.30 eV
+
+829,HO2,HS,,O2,H2S,,,NONE,NONE,3.56E-11
+# 829 energy = 1.68 eV
+
+830,HO2,SO2,,OH,SO3,,,970,2500,2.26E-13*exp(-3420.0/Tneut)
+# 830 energy = 0.66 eV
+
+831,HO2,H2S,,H2O,HSO,,,NONE,NONE,5.00E-12
+# 831 energy = 2.54 eV
+
+832,CH3SH,H,,CH3S,H2,,,200,3000,2.29E-16*(Tneut/300)**1.73*exp(-496.0/Tneut)
+# 832 energy = 0.0 eV
+
+833,CH3SH,H,,CH3,H2S,,,200,3000,1.16E-13*(Tneut/300)**0.77*exp(-1623.0/Tneut)
+# 833 energy = 0.47 eV
+
+834,CH3SH,H,,CH4,HS,,,200,3000,1.18E-17*(Tneut/300)**1.98*exp(-8321.0/Tneut)
+# 834 energy = 1.11 eV
+
+835,CH3SH,O,,CH3S,OH,,,200,800,6.98E-17*(Tneut/300)**1.818*exp(-40.3/Tneut)
+# 835 energy = 0.0 eV
+
+836,CH3SH,OH,,CH3S,H2O,,,225,1000,2.13E-17*(Tneut/300)**1.77*exp(850.0/Tneut)
+# 836 energy = 0.0 eV
+
+837,CH3SH,HS,,CH3S,H2S,,,NONE,NONE,1.99E-10*exp(-2979.0/Tneut)
+# 837 energy = 0.0 eV
+
+838,H2S,S2O,,H2O,S3,,,300,2000,1.30E-16*(Tneut/300)**1.51*exp(-17100.0/Tneut)
+# 838 energy = 0.24 eV
+
+839,H2S,SO2,,H2O,S2O,,,300,2000,2.73E-18*(Tneut/300)**1.86*exp(-19000.0/Tneut)
+# 839 energy = -0.24 eV
+
+840,CO,CH3S,,OCS,CH3,,,200,3000,1.10E-16*(Tneut/300)**1.57*exp(-3359.0/Tneut)
+# 840 energy = 0.0 eV
+
+841,C,CH3S,,CS,CH3,,,10,800,3.00E-10
+# 841 energy = 0.0 eV
+
+842,O2,CH3S,,CH3,SO2,,,200,2000,1.57E+02*(Tneut/300)**-(3.8)*exp(-6190.0/Tneut)
+# 842 energy = 0.0 eV
+
+
+
+#three body reactions
+
+843,H,HS,,H2S,,,,0.1,1000,2.30E-26*(Tneut/300)**(-2.0)*total_density/(1+2.30E-26*(Tneut/300)**(-2.0)*total_density/4.26E-11*(Tneut/300)**(0.23)*exp(-57.5/Tneut))
+# 843 energy = 3.91 eV
+
+844,O,SO,,SO2,,,,0.1,1000,1.13E-25*(Tneut/300)**(-2.17)*total_density/(1+1.13E-25*(Tneut/300)**(-2.17)*total_density/5.31E-11)
+# 844 energy = 5.71 eV
+
+845,S,S3,,S4,,,,0.1,1000,8.88E-26*(Tneut/300)**(-2.0)*total_density/(1+8.88E-26*(Tneut/300)**(-2.0)*total_density/5.00E-11)
+# 845 energy = 2.85 eV
+
+846,SO2,OH,,HSO3,,,,0.1,1000,5.85E-23*(Tneut/300)**(-3.3)*total_density/(1+5.85E-23*(Tneut/300)**(-3.3)*total_density/7.07E-11*(Tneut/300)**(-0.7))
+# 846 energy = 1.20 eV
+
+847,H,CS,,HCS,,,,0.1,1000,6.03E-18*(Tneut/300)**(-3.85)*total_density/(1+6.03E-18*(Tneut/300)**(-3.85)*total_density/1.19E-11*(Tneut/300)**(0.42))
+# 847 energy = 2.05 eV
+
+848,CH3,HS,,CH3SH,,,,0.1,1000,3.69E-29*exp(1280.0/Tneut)*total_density/(1+3.69E-29*exp(1280.0/Tneut)*total_density/1.21E-11*(Tneut/300)**(0.23)*exp(-70.0/Tneut))
+# 848 energy = 3.44 eV
+
+849,S,CS,,CS2,,,,0.1,1000,1.71E-24*(Tneut/300)**(-2.42)*total_density/(1+1.71E-24*(Tneut/300)**(-2.42)*total_density/3.17E2*(Tneut/300)**(-4.3))
+# 849 energy = 4.58 eV
+
+850,H,S2,,HS2,,,,0.1,1000,3.17E-23*(Tneut/300)**(-2.84)*exp(-838.0/Tneut)*total_density
+# 850 energy = 0.0 eV
+
+851,O,S,,SO,,,,0.1,1000,1.50E-34*exp(900.0/Tneut)*total_density/(1+1.50E-34*exp(900.0/Tneut)*total_density/3e-17)
+# 851 energy = 5.42 eV
+
+852,H,N,,NH,,,,0.1,1000,5.02E-32*total_density
+# 852 energy = 3.44 eV
+
+853,S,CO,,OCS,,,,0.1,1000,4.47E-34*exp(-1510.0/Tneut)*total_density
+# 853 energy = 0.81 eV
+
+
+@photo_start
+
+@format:idx,R,P,P,P,Tmin,Tmax,rate
+
+854,CH3SH,CH3S,H,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CH3SH_to_CH3S_H.dat
+# 854 bonding_energy = 3.69 eV
+
+855,CH3SH,CH3,HS,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/CH3SH_to_CH3_HS.dat
+# 855 bonding_energy = 2.82 eV
+
+@photo_stop
+
+
+## ammonia chemistry from VULCAN (including NH2, N2H2, and N2H chemistry)
+
+856,CH3,NH2,,CH4,NH,,,NONE,NONE,4.65E-18*(Tneut/300)**1.94*exp(-4635.0/Tneut)
+# 856 energy = 0.45 eV
+
+857,NH2,C2H,,NH,C2H2,,,NONE,NONE,4.00E-11
+# 857 energy = 0.76 eV
+
+858,NH2,C2H3,,NH3,C2H2,,,NONE,NONE,5.00E-11
+# 858 energy = 3.10 eV
+
+859,NH2,C2H4,,NH3,C2H3,,,1640,1940,8.80E-12*exp(-5170.0/Tneut)
+# 859 energy = -0.18 eV
+
+860,NH2,C2H5,,NH3,C2H4,,,NONE,NONE,3.15E-11
+# 860 energy = 3.06 eV
+
+861,NH2,C2H6,,NH3,C2H5,,,1500,2100,1.61E-11*exp(-5770.0/Tneut)
+# 861 energy = 0.24 eV
+
+862,O,NH3,,OH,NH2,,,500,2500,1.60E-11*exp(-3670.0/Tneut)
+# 862 energy = -0.17 eV
+
+863,OH,HCN,,NH2,CO,,,500,2500,1.07E-13*exp(-5890.0/Tneut)
+# 863 energy = 0.99 eV
+
+864,OH,NH,,O,NH2,,,298,3000,1.66E-12*(Tneut/300)**0.1*exp(-5800.0/Tneut)
+# 864 energy = -0.36 eV
+
+865,NH2,OH,,H2O,NH,,,250,3000,1.49E-16*(Tneut/300)**1.5*exp(230.0/Tneut)
+# 865 energy = 1.06 eV
+
+866,NO,NH2,,N2,H2O,,,300,2000,7.90E-09*(Tneut/300)**-(1.1)*exp(-98.0/Tneut)
+# 866 energy = 5.34 eV
+
+867,NH2,H2,,NH3,H,,,400,2200,2.49E-20*(Tneut/300)**2.6*exp(-3007.0/Tneut)
+# 867 energy = 0.10 eV
+
+868,NH2,CH4,,CH3,NH3,,,300,2000,7.80E-12*exp(-4680.0/Tneut)
+# 868 energy = 0.08 eV
+
+869,NH2,O,,H2,NO,,,298,3000,8.30E-12
+# 869 energy = 3.52 eV
+
+870,NH3,OH,,NH2,H2O,,,300,2000,7.49E-14*(Tneut/300)**0.56*exp(-730.0/Tneut)
+# 870 energy = 0.53 eV
+
+871,NH2,NH2,,NH3,NH,,,300,2500,9.35E-24*(Tneut/300)**3.53*exp(-278.0/Tneut)
+# 871 energy = 0.53 eV
+
+872,NH3,CH,,NH2,CH2,,,300,1300,7.24E-11*exp(317.0/Tneut)
+# 872 energy = -0.26 eV
+
+873,NH3,CN,,HCN,NH2,,,294,761,1.52E-11*exp(180.0/Tneut)
+# 873 energy = 0.76 eV
+
+874,NH,NH2,,N2H2,H,,,200,2500,6.98E-10*(Tneut/300)**-(0.27)*exp(39.0/Tneut)
+# 874 energy = 1.14 eV
+
+875,NH2,N2H2,,NH3,N2H,,,300,2000,3.00E-18*(Tneut/300)**1.94*exp(580.0/Tneut)
+# 875 energy = 2.11 eV
+
+876,NH2,N2H3,,NH3,N2H2,,,600,2500,1.53E-18*(Tneut/300)**1.94*exp(580.0/Tneut)
+# 876 energy = 2.43 eV
+
+877,N2H,NH2,,N2,NH3,,,NONE,NONE,1.53E-18*(Tneut/300)**1.94*exp(580.0/Tneut)
+# 877 energy = 4.98 eV
+
+878,NH2,NO,,N2H,OH,,,400,1900,7.28E-14*(Tneut/300)**0.29*exp(438.0/Tneut)
+# 878 energy = -0.10 eV
+
+879,NH,N2H2,,NH2,N2H,,,300,2000,4.00E-18*(Tneut/300)**2.0*exp(600.0/Tneut)
+# 879 energy = 1.51 eV
+
+880,CH3,NH2,,NH3,CH2,,,NONE,NONE,2.66E-18*(Tneut/300)**1.87*exp(-3810.0/Tneut)
+# 880 energy = -0.18 eV
+
+881,NH2,NH2,,N2H2,H2,,,500,2250,2.89E-16*(Tneut/300)**1.02*exp(-5930.0/Tneut)
+# 881 energy = 1.57 eV
+
+882,NH2,NO2,,N2O,H2O,,,300,910,2.56E-08*(Tneut/300)**-(1.44)*exp(-135.0/Tneut)
+# 882 energy = 3.89 eV
+
+883,N2H3,NH,,N2H2,NH2,,,NONE,NONE,2.70E-12
+# 883 energy = 1.82 eV
+
+884,NH2,H2CN,,NH3,HCN,,,NONE,NONE,2.29E-08*(Tneut/300)**-(1.06)*exp(-60.8/Tneut)
+# 884 energy = 3.53 eV
+
+885,NH,NH2,,NH3,N,,,NONE,NONE,1.59E-20*(Tneut/300)**2.46*exp(-54.0/Tneut)
+# 885 energy = 1.18 eV
+
+886,NH2,O3,,H2O,NO2,,,200,300,4.30E-12*exp(-930.0/Tneut)
+# 886 energy = 5.51 eV
+
+887,HO2,NH2,,NH3,O2,,,300,2000,2.75E-20*(Tneut/300)**1.55*exp(-1020.0/Tneut)
+# 887 energy = 2.38 eV
+
+888,NH,H2CN,,HCN,NH2,,,NONE,NONE,3.00E-11
+# 888 energy = 2.92 eV
+
+889,N_2d,NH3,,NH,NH2,,,200,300,5.00E-11
+# 889 energy = 0.0 eV
+
+890,N,NH3,,N2H,H2,,,710,930,7.42E-12*exp(-4830.0/Tneut)
+# 890 energy = 1.84 eV
+
+891,N2H2,H,,N2H,H2,,,300,2000,7.97E-16*(Tneut/300)**1.5*exp(-795.0/Tneut)
+# 891 energy = 1.97 eV
+
+892,N2H2,CH3,,N2H,CH4,,,300,2000,2.66E-18*(Tneut/300)**1.87*exp(-1495.0/Tneut)
+# 892 energy = 2.00 eV
+
+893,N2H2,OH,,N2H,H2O,,,300,2000,4.00E-18*(Tneut/300)**2.0*exp(600.0/Tneut)
+# 893 energy = 2.61 eV
+
+894,N2H2,O,,N2H,OH,,,300,2000,5.50E-16*(Tneut/300)**1.5*exp(-250.0/Tneut)
+# 894 energy = 1.91 eV
+
+895,NH,N2H2,,NH2,N2H,,,300,2000,4.00E-18*(Tneut/300)**2.0*exp(600.0/Tneut)
+# 895 energy = 1.51 eV
+
+
+#Three body
+896,H,NH2,,NH3,,,,0.1,1000,5.38E-25*(Tneut/300)**(-2.0)*total_density/(1+5.38E-25*(Tneut/300)**(-2.0)*total_density/3e-17)
+# 896 energy = 4.62 eV
+
+897,H2,N,,NH2,,,,0.1,1000,1.00E-36*total_density
+# 897 energy = 3.01 eV
+
+
+@photo_start
+
+@format:idx,R,P,P,P,Tmin,Tmax,rate
+
+898,NH3,NH2,H,,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/NH3_to_NH2_H.dat
+# 898 bonding_energy = 4.69 eV
+
+899,NH3,NH,H,H,NONE,NONE,@xsecFile=../../../Data/PHIDRATES/NH3_to_NH_H_H.dat
+# 899 bonding_energy = 8.40 eV
+
+@photo_stop
+
+
+#---------------------------------------------------------------------
+#Hebrard et al. 2012
+900,CH3,H2,,CH4,H,,,50,200,6.99E-14*(Tneut/300)**2.74*exp(-4740/Tneut)
+# 900 energy = 0.03 eV
+
+#Hickson et al. 2016, KIDA
+901,CH3,C2H3,,C2H2,CH4,,,10,800,3.30E-11
+# 901 energy = 3.00 eV
+
+#Hebrard et al. 2009
+902,CH3,C2H4,,C2H3,CH4,,,50,200,1.61E-14*(Tneut/300)**3.7*exp(-4780/Tneut)
+# 902 energy = -0.25 eV
+
+903,CH3,C2H5,,C2H4,CH4,,,50,200,1.90E-12
+# 903 energy = 3.00 eV
+
+#Baulch et al. 2005
+904,CH3,C2H5,,C2H4,CH4,,,300,2000,1.50E-12
+# 904 energy = 3.00 eV
+
+905,CH3,C2H6,,C2H5,CH4,,,50,200,1.82E-16*(Tneut/300)**6.0*exp(-3040/Tneut)
+# 905 energy = 0.17 eV
+
+906,CH3,C3H5,,CH3C2H,CH4,,,50,200,4.03E-13*(Tneut/300)**(-0.32)*exp(-66/Tneut)
+# 906 energy = 2.11 eV
+
+#
+907,CH3,C3H8,,C3H7,CH4,,,50,200,1.65E-15*(Tneut/300)**(3.65)*exp(-3600/Tneut)
+# 907 energy = 0.15 eV
+
+908,CH3,C4H3,,C4H2,CH4,,,50,200,3.0E-11
+# 908 energy = 2.68 eV
+
+909,CH3,C4H4,,C4H3,CH4,,,50,200,6.61E-13*exp(-2500/Tneut)
+# 909 energy = 0.14 eV
+
+910,CH3,NH3,,NH2,CH4,,,50,200,5.10E-14*(Tneut/300)**2.86*exp(-7340/Tneut)
+# 910 energy = -0.11 eV
+
+#N2H4 not in the network, CH4 production channel not included
+#CH3NH2 not in the network, CH4 production channel not included
+#CH3CN not in the network, CH4 production channel not included
+#HCO not in the network, CH4 production channel not included
+
+911,H2CO,CH3,,CH4,HCO,,,50,200,6.79E-12*exp(-4450/Tneut)
+# 911 energy = 0.73 eV
+
+#from KIDA
+912,H2CO,CH3,,CH4,HCO,,,300,2000,1.12E-14*(Tneut/300)**3.36*exp(-2170/Tneut)
+# 912 energy = 0.73 eV
+
+913,H2O,CH3,,CH4,OH,,,50,200,1.22E-14*(Tneut/300)**2.9*exp(-7480/Tneut)
+# 913 energy = -0.60 eV
+
+914,HCO,CH3,,CO,CH4,,,50,200,2.01E-10
+# 914 energy = 3.87 eV
+
+915,CH3O,CH3,,H2CO,CH4,,,50,200,4.0E-11
+# 915 energy = 3.65 eV
+
+916,CH2OH,CH3,,H2CO,CH4,,,50,200,4.0E-12
+# 916 energy = 3.25 eV
+
+
+# production of C3HX
+917,CH2_sg,C2H5,,H,C3H6,,,50,200,1.5E-11
+# 917 energy = 3.23 eV
+
+##Douglas et al. 2019 KIDA
+918,CH2_sg,C2H4,,H,C3H5,,,43,498,1.88E-9*(Tneut/300)**(-3.56)*exp(-724/Tneut)
+# 918 energy = 0.99 eV
+
+#----------------------------------------------
+#adding more CH4 production channels from Hebrard et al. 2012
+# 822: Temp range and rate constant is from Douglas et al. 2019 in KIDA
+919,CH2_sg,CH4,,CH2,CH4,,,43,498,2.14E-11*(Tneut/300)**(-1.93)*exp(-63.5/Tneut)
+# 919 energy = 0.39 eV
