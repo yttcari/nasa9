@@ -7,7 +7,7 @@ C4H, C4H3, ClCO3, H2C3N, H2D+, HC2N2, HCNS, HCS, HNCS, HS2, HSNO, HSO, HSO2, HSO
 
 Last update: 2026 Jul 10
 """
-from nasa9 import get_coefficients
+from kompot.nasa9 import get_coefficients
 
 def network_species(path="kompot/network.txt"):
     species = set()

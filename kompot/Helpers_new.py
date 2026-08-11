@@ -357,7 +357,6 @@ def make_kompot_network(df, ext):
                 # Write reverse reaction using dynamically generated running_idx
                 rate_expr_rev = f'({rate_expr})/exp({-energy*c.KJMOL_TO_EV}/({c.R}*Tneut))'
                 f.write("#" + "-" * 37 + "Reverse Reaction" + "-" * 37 + "\n")
-                
                 f.write(f"{running_idx},{r[0]},{r[1]},{r[2]},{p[0]},{p[1]},{p[2]},{p[3]},{t_min},{t_max},{rate_expr_rev}\n")
                 f.write(f"# {running_idx} energy = {-energy} eV\n\n")
                 

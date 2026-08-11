@@ -7,16 +7,16 @@ The commented out part is the plot for comparison graph
 """
 
 import re
-from nasa9 import get_H, get_coefficients
+from kompot.nasa9 import get_H, get_coefficients
 import matplotlib.pyplot as plt
 
-T = 298.15
+T = 300
 J_PER_EV_MOL = 96485.33212
 H_CACHE = {}
 MISSING_CACHE = {}
 
 
-def parse_network(path="kompot/network.txt"):
+def parse_network(path="kompot/Network_new.txt"):
     reactions = {}
     energy_re = re.compile(r"#\s*(\d+)\s+energy\s*=\s*([-+0-9.eE]+)\s*eV")
 
@@ -72,6 +72,7 @@ def species_enthalpy(sp):
 def main():
     rows = []
     skipped = []
+    zero_energy = []
 
     for idx, rxn in sorted(parse_network().items()):
         try:
@@ -86,7 +87,7 @@ def main():
             continue
 
         if network == 0:
-            skipped.append((idx, "Bruh 0 energy what reaction is this"))
+            zero_energy.append((idx, "Bruh 0 energy what reaction is this"))
             continue
 
         # network.txt stores approximately -dH
@@ -97,6 +98,9 @@ def main():
             "network_eV": network,
             "diff_eV": -dH - network,
         })
+
+        if -dH - network > 10:
+            print(f"LARGE DIFFERENCE: {idx}, {-dH}")
 
         if abs(rows[-1]['diff_eV']) > 5:
             for sp in rxn['reactants']:
@@ -119,6 +123,7 @@ def main():
     print(f"T = {T} K")
     print(f"compared: {len(rows)}")
     print(f"skipped: {len(skipped)}")
+    print(f"Zero Energy: {len(zero_energy)}")
     print()
     print("idx,dH_eV,-dH_eV,network_eV,diff_eV,reaction")
 
