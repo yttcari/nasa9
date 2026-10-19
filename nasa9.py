@@ -95,9 +95,9 @@ def get_coefficients(species, T, verbose=False):
 
                     nums1 = [coeff_line1[j:j+16] for j in range(0, 80, 16)] # each column is 16 character size
                     nums2 = [coeff_line2[j:j+16] for j in range(0, 80, 16)]
-                    nums = [float(x) for x in (nums1 + nums2) if x.strip()]
+                    nums = [float(x) if x.strip() else 0.0 for x in (nums1 + nums2)]  # keep blanks as 0
 
-                    coefficients = nums  # a1 - a7, b1, b2 
+                    coefficients = nums[:7] + nums[8:10]  # a1-a7, b1, b2 (skip placeholder field 8)
                     break
 
             if len(coefficients) == 0:
